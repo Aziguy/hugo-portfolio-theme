@@ -1,0 +1,14 @@
+- title: { fr: Master Ingénierie du web, en: Master's degree in Web Engineering }
+  school: Université de Lyon
+  start: "2015"
+  end: "2017"
+  description:
+    fr: Architecture logicielle, qualité et gestion de projet agile.
+    en: Software architecture, quality and agile project management.
+
+- title: { fr: Certification ISTQB Foundation, en: ISTQB Foundation certification }
+  school: ISTQB
+  start: "2021-03"
+  description:
+    fr: Fondamentaux du test logiciel.
+    en: Software testing fundamentals.

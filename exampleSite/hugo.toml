@@ -1,0 +1,152 @@
+# Site de démonstration du thème.
+# Depuis la racine du dépôt : hugo server --source exampleSite --themesDir ../..
+
+baseURL = "https://example.org/"
+title = "Alex Martin"
+theme = "hugo-portfolio-theme"
+
+defaultContentLanguage = "fr"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+summaryLength = 30
+
+[pagination]
+  pagerSize = 6
+
+[permalinks.page]
+  blog = "/blog/:contentbasename/"
+  projects = "/projects/:contentbasename/"
+  services = "/services/:contentbasename/"
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[outputs]
+  home = ["html", "rss"]
+  section = ["html", "rss"]
+  taxonomy = ["html"]
+  term = ["html"]
+
+[markup.goldmark.parser]
+  wrapStandAloneImageWithinParagraph = false
+[markup.goldmark.renderer]
+  unsafe = false
+[markup.highlight]
+  noClasses = true
+  style = "github-dark"
+[markup.tableOfContents]
+  startLevel = 2
+  endLevel = 3
+
+[related]
+  includeNewer = true
+  threshold = 60
+  [[related.indices]]
+    name = "tags"
+    weight = 100
+  [[related.indices]]
+    name = "categories"
+    weight = 60
+
+[languages]
+  [languages.fr]
+    languageName = "Français"
+    languageCode = "fr-FR"
+    contentDir = "content/fr"
+    weight = 1
+
+    [[languages.fr.menus.main]]
+      name = "Accueil"
+      pageRef = "/"
+      weight = 1
+    [[languages.fr.menus.main]]
+      identifier = "profile"
+      name = "Profil"
+      url = "#"
+      weight = 2
+    [[languages.fr.menus.main]]
+      name = "À propos"
+      pageRef = "/about"
+      parent = "profile"
+      weight = 1
+    [[languages.fr.menus.main]]
+      name = "CV"
+      pageRef = "/resume"
+      parent = "profile"
+      weight = 2
+    [[languages.fr.menus.main]]
+      name = "Projets"
+      pageRef = "/projects"
+      weight = 3
+    [[languages.fr.menus.main]]
+      name = "Services"
+      pageRef = "/services"
+      weight = 4
+    [[languages.fr.menus.main]]
+      name = "Blog"
+      pageRef = "/blog"
+      weight = 5
+
+  [languages.en]
+    languageName = "English"
+    languageCode = "en-US"
+    contentDir = "content/en"
+    weight = 2
+
+    [[languages.en.menus.main]]
+      name = "Home"
+      pageRef = "/"
+      weight = 1
+    [[languages.en.menus.main]]
+      identifier = "profile"
+      name = "Profile"
+      url = "#"
+      weight = 2
+    [[languages.en.menus.main]]
+      name = "About"
+      pageRef = "/about"
+      parent = "profile"
+      weight = 1
+    [[languages.en.menus.main]]
+      name = "Résumé"
+      pageRef = "/resume"
+      parent = "profile"
+      weight = 2
+    [[languages.en.menus.main]]
+      name = "Projects"
+      pageRef = "/projects"
+      weight = 3
+    [[languages.en.menus.main]]
+      name = "Services"
+      pageRef = "/services"
+      weight = 4
+    [[languages.en.menus.main]]
+      name = "Blog"
+      pageRef = "/blog"
+      weight = 5
+
+[params]
+  accent = "rose"
+  colorScheme = "system"
+  description = { fr = "Portfolio d'Alex Martin, développeur full-stack et ingénieur qualité.", en = "Portfolio of Alex Martin, full-stack developer and quality engineer." }
+  ogImage = "images/og.svg"
+
+  [params.author]
+    name = "Alex Martin"
+    email = "alex@example.com"
+    jobTitle = { fr = "Développeur full-stack & ingénieur qualité", en = "Full-stack developer & quality engineer" }
+
+  [params.resume]
+    # Chemin dans static/ ou assets/, un fichier par langue possible : { fr = "...", en = "..." }
+    pdf = ""
+
+  [params.contact]
+    # URL d'un service de formulaire (Formspree, Getform...). Vide : pas de formulaire.
+    formAction = ""
+
+  [params.home]
+    sections = ["hero", "stats", "about", "skills", "services", "projects", "experience", "testimonials", "posts", "contact"]
+    projects = 3
+    posts = 3
+    services = 4

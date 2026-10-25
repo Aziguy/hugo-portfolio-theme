@@ -1,0 +1,24 @@
+# level (0 à 100) est facultatif : sans lui, pas de jauge.
+- title: { fr: Développement, en: Development }
+  icon: code
+  items:
+    - { name: TypeScript, level: 90 }
+    - { name: React, level: 85 }
+    - { name: Python, level: 80 }
+    - { name: Node.js, level: 75 }
+
+- title: { fr: Qualité & tests, en: Quality & testing }
+  icon: shield-check
+  items:
+    - { name: Playwright, level: 90 }
+    - { name: Cypress, level: 85 }
+    - { name: { fr: Stratégie de test, en: Test strategy }, level: 85 }
+    - { name: { fr: Tests d'API, en: API testing }, level: 80 }
+
+- title: { fr: DevOps & outils, en: DevOps & tooling }
+  icon: workflow
+  items:
+    - { name: GitHub Actions, level: 85 }
+    - { name: Docker, level: 75 }
+    - { name: Hugo, level: 80 }
+    - { name: { fr: IA générative, en: Generative AI }, level: 70 }
