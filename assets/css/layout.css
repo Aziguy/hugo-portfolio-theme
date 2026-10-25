@@ -32,15 +32,21 @@
   margin-block-start: var(--space-7);
 }
 
+/* Grille fluide plafonnée à --cols colonnes, sans media query. */
 .grid {
+  --gap: var(--space-5);
+  --cols: 3;
   display: grid;
-  gap: var(--space-6) var(--space-5);
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--grid-min, 18rem)), 1fr));
+  gap: var(--space-6) var(--gap);
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(100%, max(var(--grid-min, 18rem), (100% - (var(--cols) - 1) * var(--gap)) / var(--cols))), 1fr)
+  );
 }
 
-.grid--2 { --grid-min: 30rem; }
-.grid--3 { --grid-min: 19rem; }
-.grid--4 { --grid-min: 15rem; }
+.grid--2 { --cols: 2; --grid-min: 30rem; }
+.grid--3 { --cols: 3; --grid-min: 19rem; }
+.grid--4 { --cols: 4; --grid-min: 15rem; }
 
 /* Transition fluide entre les pages (navigateurs compatibles). */
 @view-transition {
