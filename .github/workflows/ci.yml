@@ -25,7 +25,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Install Hugo
         run: |
@@ -49,13 +49,13 @@ jobs:
       - name: Configure Pages
         id: pages
         if: env.PUBLISH == 'true'
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Build demo site
         if: env.PUBLISH == 'true'
         run: hugo --source exampleSite --themesDir "$THEMES_DIR" --gc --minify -b "${{ steps.pages.outputs.base_url }}/" -d "$GITHUB_WORKSPACE/public"
 
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         if: env.PUBLISH == 'true'
         with:
           path: public
@@ -69,4 +69,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
