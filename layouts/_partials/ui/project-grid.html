@@ -1,7 +1,9 @@
-{{- /* Grille de projets filtrable par catégorie. Reçoit une liste de pages. */ -}}
+{{- /* Grille de projets filtrable et paginée côté navigateur. (dict "pages" $pages "pageSize" 6), 0 = sans pagination. */ -}}
+{{- $pages := .pages -}}
+{{- $size := .pageSize | default 0 -}}
 {{- $terms := slice -}}
-{{- range . }}{{ range .GetTerms "categories" }}{{ $terms = $terms | append .LinkTitle }}{{ end }}{{ end -}}
-<div data-filter-scope>
+{{- range $pages }}{{ range .GetTerms "categories" }}{{ $terms = $terms | append .LinkTitle }}{{ end }}{{ end -}}
+<div data-filter-scope{{ if $size }} data-page-size="{{ $size }}"{{ end }}>
   {{- with $terms | uniq | sort }}
     {{- if gt (len .) 1 }}
       <div class="filters" role="group" aria-label="{{ T "projects_filter" }}" data-reveal>
@@ -13,8 +15,16 @@
     {{- end }}
   {{- end }}
   <div class="grid grid--3" data-filter-items>
-    {{- range $i, $p := . }}{{ partial "cards/project.html" (dict "page" $p "index" $i) }}{{ end }}
+    {{- range $i, $p := $pages }}{{ partial "cards/project.html" (dict "page" $p "index" $i) }}{{ end }}
   </div>
   <p class="filters__empty" data-filter-empty hidden>{{ T "projects_empty" }}</p>
+  {{- if $size }}
+    <nav class="pagination" aria-label="{{ T "pagination" }}" data-pager hidden
+      data-label-prev="{{ T "previous" }}" data-label-next="{{ T "next" }}"
+      data-label-page="{{ T "page_n" "%d" }}" data-label-summary="{{ T "page_of" (dict "Current" "%c" "Total" "%t") }}">
+      <template data-icon-prev>{{ partial "ui/icon.html" "chevron-left" }}</template>
+      <template data-icon-next>{{ partial "ui/icon.html" "chevron-right" }}</template>
+    </nav>
+  {{- end }}
   <p class="sr-only" aria-live="polite" data-filter-status></p>
 </div>

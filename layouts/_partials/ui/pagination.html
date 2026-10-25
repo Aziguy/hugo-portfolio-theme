@@ -1,22 +1,38 @@
+{{- /* Pagination Hugo fenêtrée : première, dernière, page courante et ses voisines, ellipses entre. */ -}}
 {{- $pager := .Paginator -}}
 {{- if gt $pager.TotalPages 1 -}}
+{{- $current := $pager.PageNumber -}}
+{{- $last := $pager.TotalPages -}}
+{{- $gap := false -}}
 <nav class="pagination" aria-label="{{ T "pagination" }}">
   {{- with $pager.Prev }}
     <a class="pagination__link" href="{{ .URL }}" rel="prev">{{ partial "ui/icon.html" "chevron-left" }}<span>{{ T "previous" }}</span></a>
+  {{- else }}
+    <span class="pagination__link" aria-disabled="true">{{ partial "ui/icon.html" "chevron-left" }}<span>{{ T "previous" }}</span></span>
   {{- end }}
   <ol class="pagination__pages">
     {{- range $pager.Pagers }}
-      <li>
-        {{- if eq . $pager }}
-          <span class="pagination__page" aria-current="page">{{ .PageNumber }}</span>
-        {{- else }}
-          <a class="pagination__page" href="{{ .URL }}" aria-label="{{ T "page_n" .PageNumber }}">{{ .PageNumber }}</a>
-        {{- end }}
-      </li>
+      {{- $n := .PageNumber }}
+      {{- if or (eq $n 1) (eq $n $last) (and (ge $n (sub $current 1)) (le $n (add $current 1))) }}
+        {{- $gap = false }}
+        <li>
+          {{- if eq $n $current }}
+            <span class="pagination__page" aria-current="page">{{ $n }}</span>
+          {{- else }}
+            <a class="pagination__page" href="{{ .URL }}" aria-label="{{ T "page_n" $n }}">{{ $n }}</a>
+          {{- end }}
+        </li>
+      {{- else if not $gap }}
+        {{- $gap = true }}
+        <li><span class="pagination__gap" aria-hidden="true">…</span></li>
+      {{- end }}
     {{- end }}
   </ol>
   {{- with $pager.Next }}
     <a class="pagination__link" href="{{ .URL }}" rel="next"><span>{{ T "next" }}</span>{{ partial "ui/icon.html" "chevron-right" }}</a>
+  {{- else }}
+    <span class="pagination__link" aria-disabled="true"><span>{{ T "next" }}</span>{{ partial "ui/icon.html" "chevron-right" }}</span>
   {{- end }}
+  <p class="pagination__summary">{{ T "page_of" (dict "Current" $current "Total" $last) }}</p>
 </nav>
 {{- end -}}

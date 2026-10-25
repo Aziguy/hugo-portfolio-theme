@@ -4,7 +4,7 @@
     <div class="container">
       {{- with .Content }}<div class="prose section__intro">{{ . }}</div>{{ end }}
       <div class="grid grid--2">
-        {{- range $i, $p := (.Paginate .RegularPages.ByDate.Reverse).Pages }}{{ partial "cards/post.html" (dict "page" $p "index" $i) }}{{ end }}
+        {{- range $i, $p := (.Paginate .RegularPages.ByDate.Reverse (site.Params.blog.perPage | default 6)).Pages }}{{ partial "cards/post.html" (dict "page" $p "index" $i) }}{{ end }}
       </div>
       {{ partial "ui/pagination.html" . }}
     </div>

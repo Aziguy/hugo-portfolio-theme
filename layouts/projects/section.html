@@ -3,7 +3,7 @@
   <div class="page-body">
     <div class="container">
       {{- with .Content }}<div class="prose section__intro">{{ . }}</div>{{ end }}
-      {{ partial "ui/project-grid.html" .RegularPages.ByDate.Reverse }}
+      {{ partial "ui/project-grid.html" (dict "pages" .RegularPages.ByDate.Reverse "pageSize" (int site.Params.projects.perPage)) }}
     </div>
   </div>
   {{ partial "home/contact.html" . }}

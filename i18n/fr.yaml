@@ -51,6 +51,7 @@ previous: Précédent
 next: Suivant
 pagination: Pagination
 page_n: "Page {{ . }}"
+page_of: "Page {{ .Current }} sur {{ .Total }}"
 
 contact_title: Travaillons ensemble
 contact_text: Un projet, une mission ou une question ? Écrivez-moi, je réponds rapidement.

@@ -28,9 +28,47 @@
   border-radius: var(--radius-pill);
 }
 
+button.pagination__page,
+button.pagination__link {
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text);
+  background: none;
+  cursor: pointer;
+}
+
+.pagination__page:hover,
+.pagination__link:hover:not([aria-disabled], :disabled) {
+  color: var(--accent-ink);
+  border-color: var(--accent);
+}
+
 .pagination__page[aria-current] {
   color: var(--bg);
   background: var(--text);
+  border-color: var(--text);
+}
+
+.pagination__link[aria-disabled],
+.pagination__link:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.pagination__gap {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.5rem;
+  height: 2.5rem;
+  color: var(--muted);
+}
+
+.pagination__summary {
+  flex-basis: 100%;
+  font-size: var(--text-xs);
+  color: var(--muted);
+  text-align: center;
 }
 
 .prev-next {

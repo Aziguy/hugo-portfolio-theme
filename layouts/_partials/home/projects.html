@@ -6,7 +6,7 @@
 <section class="section projects" id="projects" aria-labelledby="projects-title">
   <div class="container">
     {{ partial "ui/section-header.html" (dict "title" $section.Title "id" "projects-title") }}
-    {{ partial "ui/project-grid.html" . }}
+    {{ partial "ui/project-grid.html" (dict "pages" .) }}
     <p class="section__more"><a class="btn" href="{{ $section.RelPermalink }}">{{ T "projects_all" }}{{ partial "ui/icon.html" "arrow-right" }}</a></p>
   </div>
 </section>

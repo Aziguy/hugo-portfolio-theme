@@ -51,6 +51,7 @@ previous: Previous
 next: Next
 pagination: Pagination
 page_n: "Page {{ . }}"
+page_of: "Page {{ .Current }} of {{ .Total }}"
 
 contact_title: Let's work together
 contact_text: A project, a mission or a question? Drop me a line, I reply quickly.
