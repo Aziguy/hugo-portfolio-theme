@@ -23,8 +23,8 @@
 | **Multilingue natif** | Interface traduite (FR, EN), contenu par langue, sélecteur qui conserve la page, balises `hreflang`. |
 | **Identité forte** | Cartes à contour dont l'image déborde, pastilles pastel à jauge circulaire, frise alternée à onglets, badges au texte tournant, lettres détourées, formes décoratives animées. |
 | **Personnalisable par le visiteur** | Panneau d'outils : 10 couleurs d'accent, sens LTR / RTL, clair / sombre, mémorisés et appliqués sans flash. |
-| **Projets filtrables** | Filtres par catégorie accessibles, fiches projet avec client, rôle, période, technologies et résultats. |
-| **Blog complet** | Pagination, temps de lecture, sommaire, étiquettes, articles liés, flux RSS. |
+| **Projets filtrables** | Filtres par catégorie accessibles et pagination combinée, fiches projet avec client, rôle, période, technologies et résultats. |
+| **Blog complet** | Pagination fenêtrée réglable, temps de lecture, sommaire, étiquettes, articles liés, flux RSS. |
 | **CV** | Page en deux colonnes (photo, coordonnées, formation, compétences / expériences, projets) et PDF par langue. |
 | **Moderne** | Typographie fluide, transitions de vue entre pages, `:has()`, propriétés logiques, mouvement réduit respecté. |
 | **SEO** | Open Graph, URL canonique, JSON-LD (`Person`, `WebSite`, `BlogPosting`, `CreativeWork`), sitemap. |

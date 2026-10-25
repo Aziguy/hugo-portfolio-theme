@@ -35,6 +35,8 @@ La fonction `func/l.html` choisit la langue courante, puis la langue par défaut
 | `params.contact.title`, `.subtitle`, `.text` | Textes du bandeau de contact | textes i18n |
 | `params.home.sections` | Sections de l'accueil, dans l'ordre | toutes |
 | `params.home.projects`, `.posts`, `.services` | Nombre d'éléments affichés à l'accueil | 6, 2, 4 |
+| `params.blog.perPage` | Articles par page (pagination Hugo, pages `/blog/page/2/`...) | `6` |
+| `params.projects.perPage` | Projets par page, pagination dans le navigateur combinée aux filtres ; `0` affiche tout | `6` |
 | `params.blog.showReadingTime` | Temps de lecture | `true` |
 | `params.blog.showToc` | Sommaire des articles (désactivable par `toc: false`) | `true` |
 

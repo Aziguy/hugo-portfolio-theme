@@ -8,6 +8,11 @@
 - Page CV en deux colonnes, page À propos avec citation et signature, bandeau sombre des pages internes.
 - Bouton de retour en haut avec progression de lecture, transitions de vue entre pages.
 
+### Ajouté (suite)
+- Pagination fenêtrée des articles (`params.blog.perPage`) avec repère « Page x sur y », pagination des projets combinée aux filtres (`params.projects.perPage`).
+- Grilles plafonnées à leur nombre de colonnes nominal.
+- Démo enrichie : 9 articles, 8 projets, 6 services, 5 expériences, 6 formations, 5 témoignages, 4 groupes de compétences.
+
 ### Corrigé
 - Frise et listes à puces sans retrait : la remise à zéro des listes passe en `:where()`.
 - Débordement horizontal du carrousel sur mobile.
