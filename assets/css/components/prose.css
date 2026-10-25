@@ -1,0 +1,118 @@
+/* Contenu Markdown. */
+.prose {
+  font-size: var(--text-lg);
+  line-height: 1.8;
+}
+
+.prose > * + * {
+  margin-block-start: 1.1em;
+}
+
+.prose h2 {
+  margin-block-start: 2em;
+  font-size: var(--text-xl);
+}
+
+.prose h3 {
+  margin-block-start: 1.6em;
+  font-size: var(--text-lg);
+}
+
+.prose a {
+  color: var(--accent-ink);
+}
+
+.prose ul,
+.prose ol {
+  padding-inline-start: 1.4em;
+}
+
+.prose li + li {
+  margin-block-start: 0.4em;
+}
+
+.prose li::marker {
+  color: var(--accent-ink);
+}
+
+.prose blockquote {
+  padding: var(--space-3) var(--space-5);
+  color: var(--muted);
+  border-inline-start: 3px solid var(--accent);
+  background: var(--surface-2);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.prose code {
+  padding: 0.1em 0.35em;
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--surface-2);
+  border-radius: 0.35em;
+}
+
+.prose pre {
+  overflow-x: auto;
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  border-radius: var(--radius-md);
+}
+
+.prose pre code {
+  padding: 0;
+  background: none;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+}
+
+.prose th,
+.prose td {
+  padding: var(--space-2) var(--space-3);
+  border-block-end: 1px solid var(--border);
+  text-align: start;
+}
+
+.prose img,
+.figure img {
+  border-radius: var(--radius-md);
+}
+
+.figure figcaption {
+  margin-block-start: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--muted);
+  text-align: center;
+}
+
+.prose hr {
+  border: 0;
+  border-block-start: 1px solid var(--border);
+}
+
+.heading-anchor {
+  margin-inline-start: 0.35em;
+  color: var(--muted);
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+:is(h2, h3, h4):hover > .heading-anchor {
+  opacity: 1;
+}
+
+.notice {
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--text-base);
+  border-inline-start: 4px solid var(--notice, var(--accent));
+  background: color-mix(in oklab, var(--notice, var(--accent)) 10%, var(--surface));
+  border-radius: var(--radius-md);
+}
+
+.notice--success { --notice: #16a34a; }
+.notice--warning { --notice: #d97706; }

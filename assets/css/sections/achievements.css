@@ -1,0 +1,148 @@
+/* Parcours : onglets et frise alternée autour d'un axe central. */
+.achievements .tabs__list {
+  margin-block-end: var(--space-7);
+}
+
+.alt-timeline {
+  position: relative;
+  display: grid;
+  gap: var(--space-5);
+  padding-inline-start: var(--space-7);
+}
+
+.alt-timeline::before {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0.875rem;
+  width: 2px;
+  background: var(--outline);
+}
+
+.alt-timeline__item {
+  position: relative;
+}
+
+.alt-timeline__period {
+  position: absolute;
+  inset-block-start: var(--space-5);
+  inset-inline-start: calc(-1 * var(--space-7));
+  z-index: 1;
+  padding: 0.35rem 0.5rem;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--bg);
+  background: var(--text);
+  border-radius: var(--radius-pill);
+}
+
+/* Texte vertical isolé : writing-mode ne doit pas changer l'axe du positionnement. */
+.alt-timeline__period > span {
+  display: block;
+  writing-mode: vertical-rl;
+  rotate: 180deg;
+}
+
+.alt-timeline__card {
+  padding: var(--space-5) var(--space-6);
+  background: var(--surface-2);
+  border: 1px solid var(--outline);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.3s, transform 0.3s var(--ease);
+}
+
+.alt-timeline__card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.alt-timeline__title {
+  font-size: var(--text-lg);
+}
+
+.alt-timeline__title span {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.alt-timeline__text {
+  margin-block-start: var(--space-3);
+  color: var(--muted);
+}
+
+.alt-timeline__list {
+  display: grid;
+  list-style: disc;
+  gap: var(--space-1);
+  margin-block-start: var(--space-3);
+  padding-inline-start: 1.1rem;
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+
+.alt-timeline__list li::marker {
+  color: var(--accent-ink);
+}
+
+.alt-timeline .chip-list {
+  margin-block-start: var(--space-3);
+}
+
+@media (min-width: 64em) {
+  .alt-timeline {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: minmax(5rem, auto);
+    column-gap: 6rem;
+    row-gap: 0;
+    padding-inline-start: 0;
+  }
+
+  .alt-timeline::before {
+    inset-inline-start: 50%;
+    translate: -50% 0;
+  }
+
+  .alt-timeline__item {
+    grid-row: var(--row) / span 2;
+    align-self: start;
+    margin-block-end: var(--space-5);
+  }
+
+  .alt-timeline__item:nth-child(odd) { grid-column: 1; }
+  .alt-timeline__item:nth-child(even) { grid-column: 2; }
+
+  .alt-timeline__item::after {
+    content: "";
+    position: absolute;
+    inset-block-start: calc(var(--space-5) + 3rem);
+    width: 3rem;
+    height: 2px;
+    background: var(--outline);
+  }
+
+  .alt-timeline__item:nth-child(odd)::after { inset-inline-start: 100%; }
+  .alt-timeline__item:nth-child(even)::after { inset-inline-end: 100%; }
+
+  .alt-timeline__period {
+    inset-block-start: var(--space-6);
+  }
+
+  .alt-timeline__item:nth-child(odd) .alt-timeline__period {
+    inset-inline-start: calc(100% + 3rem);
+    translate: -50% 0;
+  }
+
+  .alt-timeline__item:nth-child(even) .alt-timeline__period {
+    inset-inline-start: auto;
+    inset-inline-end: calc(100% + 3rem);
+    translate: 50% 0;
+  }
+
+  [dir="rtl"] .alt-timeline__item:nth-child(odd) .alt-timeline__period { translate: 50% 0; }
+  [dir="rtl"] .alt-timeline__item:nth-child(even) .alt-timeline__period { translate: -50% 0; }
+}
+
+.achievements .doodle--backpack { inset-block-start: 8%; inset-inline-start: 2%; width: 6rem; height: 6rem; }
+.achievements .doodle--book { inset-block-end: 8%; inset-inline-start: 34%; width: 6rem; height: 6rem; }

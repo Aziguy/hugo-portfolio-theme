@@ -1,0 +1,260 @@
+/* Statut, formulaire, badge rotatif, jauge circulaire, formes décoratives, onglets, carrousel. */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0.35rem 0.9rem;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text);
+  border: 1px solid var(--outline);
+  border-radius: var(--radius-pill);
+}
+
+.status__dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  background: #16a34a;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgb(22 163 74 / 0.6);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  70% { box-shadow: 0 0 0 0.5rem rgb(22 163 74 / 0); }
+  100% { box-shadow: 0 0 0 0 rgb(22 163 74 / 0); }
+}
+
+.form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.form__field {
+  display: grid;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  background: var(--surface);
+  border: 1px solid var(--outline);
+  border-radius: var(--radius-md);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form input:focus,
+.form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* Badge circulaire au texte tournant. */
+.badge-rotate {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 8rem;
+  aspect-ratio: 1;
+  color: #fff;
+  text-decoration: none;
+  background: #1e2630;
+  border-radius: 50%;
+  transition: transform 0.3s var(--ease), background-color 0.3s;
+}
+
+.badge-rotate:hover {
+  color: #fff;
+  background: var(--accent-strong);
+  transform: scale(1.05);
+}
+
+.badge-rotate__text {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.6px;
+  fill: currentColor;
+  animation: spin 16s linear infinite;
+}
+
+.badge-rotate > .icon {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+.badge-rotate--light {
+  color: #111a24;
+  background: #f5f7fa;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Jauge circulaire. */
+.ring {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 5.5rem;
+  aspect-ratio: 1;
+  flex-shrink: 0;
+}
+
+.ring svg {
+  position: absolute;
+  inset: 0;
+  rotate: -90deg;
+}
+
+.ring__track {
+  fill: none;
+  stroke: color-mix(in oklab, var(--text) 12%, transparent);
+  stroke-width: 3;
+}
+
+.ring__value {
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 3;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 1.4s var(--ease);
+}
+
+.js [data-reveal]:not(.is-visible) .ring__value {
+  stroke-dashoffset: var(--dash);
+}
+
+.ring__label {
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+/* Formes décoratives en contour. */
+.doodle {
+  position: absolute;
+  z-index: 0;
+  color: var(--text);
+  opacity: 0.16;
+  pointer-events: none;
+  animation: float 7s ease-in-out infinite alternate;
+}
+
+.doodle .icon {
+  width: 100%;
+  height: 100%;
+  stroke-width: 1.2;
+}
+
+.doodle--accent {
+  color: var(--accent);
+  opacity: 0.7;
+}
+
+@keyframes float {
+  to { transform: translateY(-14px) rotate(8deg); }
+}
+
+@media (max-width: 47.99em) {
+  .doodle {
+    display: none;
+  }
+}
+
+/* Onglets. */
+.tabs__panel[hidden] {
+  display: none;
+}
+
+.no-js .tabs__list {
+  display: none;
+}
+
+.no-js .tabs__panel[hidden] {
+  display: block;
+}
+
+/* Carrousel. */
+.carousel {
+  min-width: 0;
+}
+
+.carousel__track {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 100%;
+  gap: var(--space-5);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel__slide {
+  scroll-snap-align: start;
+}
+
+.carousel__controls {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-block-start: var(--space-6);
+}
+
+.no-js .carousel__controls {
+  display: none;
+}
+
+/* Bouton retour en haut avec progression de lecture. */
+.back-to-top {
+  position: fixed;
+  inset-block-end: var(--space-5);
+  inset-inline-end: var(--space-5);
+  z-index: 30;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  color: var(--accent-ink);
+  background: var(--surface);
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: opacity 0.3s, transform 0.3s var(--ease), visibility 0.3s;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.back-to-top svg.back-to-top__ring {
+  position: absolute;
+  inset: 0;
+  rotate: -90deg;
+}
+
+.back-to-top__ring circle {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-dasharray: 150.8;
+  stroke-dashoffset: calc(150.8 - 150.8 * var(--progress, 0));
+}

@@ -1,4 +1,4 @@
-/* Jetons de design : couleurs, typographie, espacements. Surcharger dans assets/css/custom.css. */
+/* Jetons de design. Surcharger dans assets/css/custom.css du site. */
 :root {
   --font-sans: "Montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
@@ -8,9 +8,10 @@
   --text-base: 1rem;
   --text-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
   --text-xl: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
-  --text-2xl: clamp(1.5rem, 1.25rem + 1.2vw, 2.25rem);
+  --text-2xl: clamp(1.625rem, 1.3rem + 1.4vw, 2.375rem);
   --text-3xl: clamp(2rem, 1.5rem + 2.4vw, 3.25rem);
-  --text-4xl: clamp(2.5rem, 1.6rem + 4.4vw, 4.75rem);
+  --text-4xl: clamp(2.75rem, 1.6rem + 5vw, 5rem);
+  --text-display: clamp(5rem, 2rem + 13vw, 13rem);
 
   --space-1: 0.25rem;
   --space-2: 0.5rem;
@@ -19,54 +20,75 @@
   --space-5: 1.5rem;
   --space-6: 2rem;
   --space-7: 3rem;
-  --space-8: clamp(3.5rem, 2.5rem + 4vw, 6rem);
+  --space-8: clamp(4rem, 3rem + 4vw, 7rem);
 
   --radius-sm: 0.5rem;
-  --radius-md: 0.875rem;
-  --radius-lg: 1.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.875rem;
   --radius-pill: 999px;
 
-  --container: 74rem;
-  --container-narrow: 48rem;
-  --header-height: 4.5rem;
+  --container: 82.5rem;
+  --container-narrow: 50rem;
+  --header-height: 6.125rem;
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
 
-  --accent-light: #e11d48;
-  --accent-dark: #fb7185;
+  /* Accent par défaut, remplacé par data-accent. */
+  --accent-light: #f41a4a;
+  --accent-dark: #ff5c7c;
 
-  --bg: #f8f6fb;
+  --bg: #ffffff;
   --surface: #ffffff;
-  --surface-2: #f1eef6;
+  --surface-2: #f8f6fc;
   --text: #111a24;
   --muted: #55606e;
-  --border: #dcd7e4;
+  --outline: #111a24;
+  --border: #e6e2ee;
   --accent: var(--accent-light);
   --on-accent: #ffffff;
-  --shadow: 0 1px 2px rgb(17 26 36 / 0.04), 0 8px 24px -12px rgb(17 26 36 / 0.18);
+  --shadow: 0 1px 2px rgb(17 26 36 / 0.05), 0 12px 32px -16px rgb(17 26 36 / 0.25);
+
+  --pastel-1: #fbf3c8;
+  --pastel-2: #ffdbe3;
+  --pastel-3: #d6f3fb;
+  --pastel-4: #dcf8d2;
+  --pastel-5: #ebe4ff;
 }
 
 :root[data-theme="dark"] {
-  --accent-ink: var(--accent);
-  --bg: #0f1218;
-  --surface: #171b23;
-  --surface-2: #1d222c;
+  --bg: #0d1117;
+  --surface: #141a22;
+  --surface-2: #19202a;
   --text: #eef1f6;
   --muted: #a3acb9;
-  --border: #2c3340;
+  --outline: #3b4554;
+  --border: #252e3a;
   --accent: var(--accent-dark);
-  --on-accent: #111a24;
-  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px -16px rgb(0 0 0 / 0.6);
+  --accent-ink: var(--accent);
+  --accent-strong: var(--accent);
+  --on-accent: #0d1117;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 16px 40px -20px rgb(0 0 0 / 0.7);
+  --pastel-1: color-mix(in oklab, #fbf3c8 16%, #141a22);
+  --pastel-2: color-mix(in oklab, #ffdbe3 16%, #141a22);
+  --pastel-3: color-mix(in oklab, #d6f3fb 16%, #141a22);
+  --pastel-4: color-mix(in oklab, #dcf8d2 16%, #141a22);
+  --pastel-5: color-mix(in oklab, #ebe4ff 16%, #141a22);
   color-scheme: dark;
 }
 
 :root {
-  --accent-ink: color-mix(in oklab, var(--accent) 78%, #000);
+  --accent-ink: color-mix(in oklab, var(--accent) 80%, #000);
+  --accent-strong: color-mix(in oklab, var(--accent) 86%, #000);
   --accent-soft: color-mix(in oklab, var(--accent) 12%, transparent);
-  --accent-line: color-mix(in oklab, var(--accent) 35%, transparent);
+  --accent-line: color-mix(in oklab, var(--accent) 40%, transparent);
 }
 
+[data-accent="rose"] { --accent-light: #f41a4a; --accent-dark: #ff5c7c; }
+[data-accent="violet"] { --accent-light: #7e22ce; --accent-dark: #c084fc; }
+[data-accent="indigo"] { --accent-light: #4f46e5; --accent-dark: #818cf8; }
+[data-accent="orange"] { --accent-light: #ea580c; --accent-dark: #fb923c; }
+[data-accent="cyan"] { --accent-light: #0891b2; --accent-dark: #22d3ee; }
 [data-accent="blue"] { --accent-light: #2563eb; --accent-dark: #60a5fa; }
-[data-accent="emerald"] { --accent-light: #047857; --accent-dark: #34d399; }
-[data-accent="violet"] { --accent-light: #7c3aed; --accent-dark: #a78bfa; }
-[data-accent="amber"] { --accent-light: #b45309; --accent-dark: #fbbf24; }
-[data-accent="slate"] { --accent-light: #334155; --accent-dark: #cbd5e1; }
+[data-accent="red"] { --accent-light: #dc2626; --accent-dark: #f87171; }
+[data-accent="pink"] { --accent-light: #db2777; --accent-dark: #f472b6; }
+[data-accent="slate"] { --accent-light: #475569; --accent-dark: #94a3b8; }
+[data-accent="green"] { --accent-light: #059669; --accent-dark: #34d399; }

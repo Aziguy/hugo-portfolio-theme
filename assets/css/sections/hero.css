@@ -1,0 +1,127 @@
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--space-7) var(--space-8);
+}
+
+/* Prénom et nom en contour, en filigrane. */
+.hero__watermark {
+  position: absolute;
+  z-index: 0;
+  font-size: var(--text-display);
+  font-weight: 900;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in oklab, var(--text) 14%, transparent);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.hero__watermark--first {
+  inset-block-start: 0;
+  inset-inline-start: -0.04em;
+}
+
+.hero__watermark--last {
+  inset-block-end: 0;
+  inset-inline-end: -0.04em;
+}
+
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-items: center;
+  gap: var(--space-7);
+}
+
+@media (min-width: 64em) {
+  .hero__inner {
+    grid-template-columns: 1fr 1fr;
+    min-height: min(44rem, 82vh);
+  }
+}
+
+.hero__content {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-4);
+}
+
+.hero__greeting {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--accent-ink);
+}
+
+.hero__title {
+  font-size: var(--text-4xl);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.hero__role {
+  font-size: var(--text-xl);
+  font-weight: 600;
+}
+
+.hero__role .accent {
+  color: var(--accent-ink);
+}
+
+.hero__tagline {
+  max-width: 34rem;
+  font-size: var(--text-lg);
+  color: var(--muted);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block: var(--space-4) var(--space-2);
+}
+
+/* Portrait dans une forme organique cerclée d'un trait. */
+.hero__media {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 27rem);
+  padding: 1.1rem;
+}
+
+@media (min-width: 64em) {
+  .hero__media {
+    order: -1;
+  }
+}
+
+.hero__media::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--outline);
+  border-radius: 46% 54% 42% 58% / 58% 44% 56% 42%;
+  animation: morph 12s ease-in-out infinite alternate;
+}
+
+.hero__portrait {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: var(--surface-2);
+  border-radius: 42% 58% 48% 52% / 52% 42% 58% 48%;
+}
+
+@keyframes morph {
+  to { border-radius: 56% 44% 52% 48% / 44% 56% 44% 56%; }
+}
+
+.hero .doodle--squiggle { inset-block-start: 14%; inset-inline-end: 6%; width: 3.5rem; height: 3.5rem; }
+.hero .doodle--asterisk { inset-block-start: 22%; inset-inline-start: 52%; width: 3.25rem; height: 3.25rem; }
+.hero .doodle--diamond { inset-block-end: 14%; inset-inline-start: 4%; width: 3rem; height: 3rem; }
+.hero .doodle--spark { inset-block-end: 26%; inset-inline-end: 12%; width: 2.5rem; height: 2.5rem; }

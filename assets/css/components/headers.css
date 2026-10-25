@@ -1,0 +1,110 @@
+/* Titre de section : dernier mot en couleur, trait vertical et point. */
+.section-header {
+  display: grid;
+  justify-items: center;
+  gap: var(--space-4);
+  margin-block-end: var(--space-7);
+  text-align: center;
+}
+
+.section-header__title {
+  font-size: var(--text-2xl);
+  font-weight: 700;
+}
+
+.section-header__title .accent,
+.title-accent {
+  color: var(--accent-ink);
+}
+
+.section-header__line {
+  position: relative;
+  width: 2px;
+  height: 4.5rem;
+  background: var(--outline);
+}
+
+.section-header__line::after {
+  content: "";
+  position: absolute;
+  inset-block-end: -0.35rem;
+  inset-inline-start: 50%;
+  width: 0.75rem;
+  height: 0.75rem;
+  translate: -50% 0;
+  background: var(--outline);
+  border-radius: 50%;
+}
+
+.section-header__text {
+  max-width: 40rem;
+  color: var(--muted);
+}
+
+.section-title {
+  margin-block-end: var(--space-5);
+  font-size: var(--text-xl);
+}
+
+/* Bandeau d'en-tête des pages internes. */
+.page-header {
+  position: relative;
+  overflow: hidden;
+  margin-block-start: calc(-1 * var(--header-height));
+  padding-block: calc(var(--header-height) + var(--space-7)) var(--space-7);
+  color: #f5f7fa;
+  text-align: center;
+  background:
+    radial-gradient(40rem 22rem at 85% 0%, color-mix(in oklab, var(--accent) 45%, transparent), transparent 70%),
+    radial-gradient(30rem 20rem at 10% 100%, color-mix(in oklab, var(--accent) 22%, transparent), transparent 70%),
+    #111a24;
+}
+
+.page-header .container {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: var(--space-3);
+}
+
+.page-header__title {
+  font-size: var(--text-3xl);
+  color: #fff;
+}
+
+.page-header__lead {
+  max-width: 44rem;
+  font-size: var(--text-lg);
+  color: #c9d0da;
+}
+
+.breadcrumb ol {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  font-size: var(--text-sm);
+  color: #c9d0da;
+}
+
+.breadcrumb li + li::before {
+  content: "›";
+  margin-inline-end: var(--space-2);
+}
+
+.breadcrumb a {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.page-header .doodle {
+  color: #fff;
+  opacity: 0.12;
+}
+
+.doodle--ph-a { inset-block-start: 30%; inset-inline-start: 8%; width: 4rem; height: 4rem; }
+.doodle--ph-b { inset-block-end: 18%; inset-inline-end: 9%; width: 4.5rem; height: 4.5rem; }

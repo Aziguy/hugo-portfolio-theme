@@ -1,0 +1,191 @@
+/* À propos (accueil et page) : citation en contour, photo ovale, badge rotatif, compétences en pastilles. */
+.about__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-items: center;
+  gap: var(--space-7);
+}
+
+@media (min-width: 75em) {
+  .about__grid {
+    grid-template-columns: 1fr 1.05fr 1.1fr;
+  }
+}
+
+@media (min-width: 56em) and (max-width: 74.99em) {
+  .about__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .about__grid > .skill-pills {
+    grid-column: 1 / -1;
+  }
+}
+
+.about__intro {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.quote-outline {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  line-height: 1.2;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text);
+  opacity: 0.55;
+}
+
+@supports not (-webkit-text-stroke: 1px black) {
+  .quote-outline {
+    color: var(--muted);
+  }
+}
+
+.about__text {
+  color: var(--muted);
+}
+
+.about__signature {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.about__signature strong {
+  font-size: var(--text-lg);
+}
+
+.about__signature span {
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+
+.about__signature img {
+  width: 8rem;
+  margin-block-start: var(--space-2);
+}
+
+[data-theme="dark"] .about__signature img {
+  filter: invert(1);
+}
+
+.about__media {
+  position: relative;
+  justify-self: center;
+  width: min(100%, 22rem);
+  padding: 1rem;
+  border: 1px solid var(--outline);
+  border-radius: 50%;
+}
+
+.about__photo {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: var(--surface-2);
+  border-radius: 50%;
+}
+
+.about__media .badge-rotate {
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-end: 0;
+}
+
+/* Page À propos : photo arrondie et texte côte à côte. */
+.about-page {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  align-items: center;
+  gap: var(--space-7);
+}
+
+@media (min-width: 56em) {
+  .about-page {
+    grid-template-columns: 1fr 1.1fr;
+  }
+}
+
+.about-page__media {
+  padding: 1rem;
+  border: 1px solid var(--outline);
+  border-radius: 38%;
+}
+
+.about-page__media img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  background: var(--surface-2);
+  border-radius: 35%;
+}
+
+.about-page__content {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.about-page__content .section-header {
+  justify-items: start;
+  margin: 0;
+  text-align: start;
+}
+
+/* Pastilles de compétences. */
+.skill-pills {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.skill-pills--row {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+}
+
+.skill-pill {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-4) var(--space-6) var(--space-4) var(--space-4);
+  background: var(--pill-bg, var(--pastel-1));
+  border-radius: 6rem;
+  transition: transform 0.3s var(--ease);
+}
+
+.skill-pill:hover {
+  transform: translateX(6px);
+}
+
+[dir="rtl"] .skill-pill:hover {
+  transform: translateX(-6px);
+}
+
+.skill-pill:nth-child(5n + 2) { --pill-bg: var(--pastel-2); }
+.skill-pill:nth-child(5n + 3) { --pill-bg: var(--pastel-3); }
+.skill-pill:nth-child(5n + 4) { --pill-bg: var(--pastel-4); }
+.skill-pill:nth-child(5n + 5) { --pill-bg: var(--pastel-5); }
+
+.skill-pill__title {
+  font-size: var(--text-base);
+  font-weight: 700;
+}
+
+.skill-pill__title small {
+  font-size: var(--text-xs);
+  font-weight: 500;
+}
+
+.skill-pill__text {
+  margin-block-start: var(--space-1);
+  font-size: var(--text-sm);
+  color: var(--muted);
+}
+
+.about .doodle--book { inset-block-start: 6%; inset-inline-start: 1%; width: 7rem; height: 7rem; }
+.about .doodle--asterisk { inset-block-start: 10%; inset-inline-start: 22%; width: 3rem; height: 3rem; }
+.about .doodle--spark { inset-block-end: 6%; inset-inline-end: 1%; width: 4rem; height: 4rem; }
+
+.about-page__content .section-header__line {
+  display: none;
+}
