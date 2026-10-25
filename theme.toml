@@ -1,0 +1,13 @@
+name = "Portfolio"
+license = "MIT"
+licenselink = "https://github.com/Aziguy/hugo-portfolio-theme/blob/master/LICENSE"
+description = "Thème Hugo bilingue pour portfolio, CV et blog : CSS natif, JavaScript sans dépendance, SEO et accessibilité."
+homepage = "https://github.com/Aziguy/hugo-portfolio-theme"
+demosite = "https://aziguy.github.io/hugo-portfolio-theme/"
+tags = ["portfolio", "personal", "resume", "blog", "multilingual", "dark mode", "responsive", "minimal"]
+features = ["multilingual", "dark mode", "rss", "json-ld", "open graph", "projects filter", "table of contents"]
+min_version = "0.146.0"
+
+[author]
+  name = "Hippolyte Kengni"
+  homepage = "https://hippolytek.fr"

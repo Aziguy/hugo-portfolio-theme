@@ -1,0 +1,26 @@
+# Valeurs par défaut du thème, fusionnées avec la configuration du site.
+
+[module.hugoVersion]
+  min = "0.146.0"
+  extended = false
+
+[params]
+  # Couleur d'accent : rose, blue, emerald, violet, amber, slate.
+  accent = "rose"
+  # Thème initial : system, light ou dark.
+  colorScheme = "system"
+  dateFormat = ":date_long"
+
+  [params.home]
+    # Ordre et présence des sections de l'accueil (layouts/_partials/home/<nom>.html).
+    sections = ["hero", "stats", "about", "skills", "services", "projects", "experience", "testimonials", "posts", "contact"]
+    projects = 3
+    posts = 3
+    services = 4
+
+  [params.projects]
+    perPage = 9
+
+  [params.blog]
+    showReadingTime = true
+    showToc = true

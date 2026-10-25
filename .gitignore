@@ -1,0 +1,13 @@
+# Sorties Hugo
+public/
+resources/_gen/
+exampleSite/public/
+exampleSite/resources/_gen/
+.hugo_build.lock
+
+# Système et éditeurs
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log
