@@ -1,0 +1,47 @@
+{{- /* Panneau de personnalisation (params.tools = false pour le masquer). */ -}}
+{{- $colors := slice "rose" "violet" "indigo" "orange" "cyan" "blue" "red" "pink" "slate" "green" -}}
+{{- $swatches := dict "rose" "#f41a4a" "violet" "#7e22ce" "indigo" "#4f46e5" "orange" "#ea580c" "cyan" "#0891b2" "blue" "#2563eb" "red" "#dc2626" "pink" "#db2777" "slate" "#475569" "green" "#059669" -}}
+<button class="tools-toggle" type="button" data-tools-open aria-controls="tools" aria-expanded="false" aria-label="{{ T "tools_title" }}" title="{{ T "tools_title" }}">
+  {{- partial "ui/icon.html" "settings" -}}
+</button>
+<div class="tools-overlay" data-tools-close></div>
+<aside class="tools" id="tools" aria-labelledby="tools-title" data-tools>
+  <div class="tools__head">
+    <h2 class="tools__title" id="tools-title">{{ T "tools_title" }}</h2>
+    <button class="icon-button" type="button" data-tools-close aria-label="{{ T "menu_close" }}">{{ partial "ui/icon.html" "x" }}</button>
+  </div>
+  <div class="tools__body">
+    <section>
+      <h3 class="tools__label">{{ T "tools_color" }}</h3>
+      <div class="tools__swatches" role="group" aria-label="{{ T "tools_color" }}">
+        {{- range $colors }}
+          <button class="tools__swatch" type="button" data-set-accent="{{ . }}" style="--swatch: {{ index $swatches . }}" aria-pressed="false" aria-label="{{ . }}" title="{{ . }}">
+            {{- partial "ui/icon.html" "check-check" -}}
+          </button>
+        {{- end }}
+      </div>
+    </section>
+    <section>
+      <h3 class="tools__label">{{ T "tools_direction" }}</h3>
+      <div class="tools__options" role="group" aria-label="{{ T "tools_direction" }}">
+        <button class="tools__option" type="button" data-set-dir="ltr" aria-pressed="false">
+          <span class="tools__preview" aria-hidden="true"><span></span><span></span><span></span><span></span></span>LTR
+        </button>
+        <button class="tools__option" type="button" data-set-dir="rtl" aria-pressed="false">
+          <span class="tools__preview tools__preview--rtl" aria-hidden="true"><span></span><span></span><span></span><span></span></span>RTL
+        </button>
+      </div>
+    </section>
+    <section>
+      <h3 class="tools__label">{{ T "tools_theme" }}</h3>
+      <div class="tools__options" role="group" aria-label="{{ T "tools_theme" }}">
+        <button class="tools__option" type="button" data-set-theme="light" aria-pressed="false">
+          <span class="tools__preview" aria-hidden="true"><span></span><span></span><span></span><span></span></span>{{ T "theme_light" }}
+        </button>
+        <button class="tools__option" type="button" data-set-theme="dark" aria-pressed="false">
+          <span class="tools__preview tools__preview--dark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>{{ T "theme_dark" }}
+        </button>
+      </div>
+    </section>
+  </div>
+</aside>

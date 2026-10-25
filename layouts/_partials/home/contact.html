@@ -1,16 +1,19 @@
+{{- /* Bandeau sombre d'appel au contact avec badge rotatif. */ -}}
 {{- $contact := site.Params.contact | default dict -}}
-<section class="section contact" id="contact" aria-labelledby="contact-title">
-  <div class="container contact__inner" data-reveal>
-    <div class="contact__intro">
-      <h2 class="contact__title" id="contact-title">{{ or (partial "func/l.html" $contact.title) (T "contact_title") }}</h2>
-      <p class="contact__text">{{ or (partial "func/l.html" $contact.text) (T "contact_text") }}</p>
-      {{- with site.Params.author.email }}
-        <a class="btn btn--primary" href="mailto:{{ . }}">{{ partial "ui/icon.html" "mail" }}{{ T "contact_email" }}</a>
-      {{- end }}
-      {{ partial "ui/social-links.html" . }}
-    </div>
+{{- $email := site.Params.author.email -}}
+<section class="section hire" id="contact" aria-labelledby="contact-title">
+  {{ partial "ui/doodle.html" (dict "icon" "lightbulb" "class" "doodle--a") }}
+  {{ partial "ui/doodle.html" (dict "icon" "shapes" "class" "doodle--b") }}
+  <div class="container hire__inner" data-reveal>
+    <h2 class="hire__title" id="contact-title">{{ or (partial "func/l.html" $contact.title) (T "contact_title") }}</h2>
+    {{- with partial "func/l.html" $contact.subtitle }}<p class="hire__subtitle">{{ . }}</p>{{ end }}
+    <p class="hire__text">{{ or (partial "func/l.html" $contact.text) (T "contact_text") }}</p>
+    {{- with $email }}
+      {{ partial "ui/rotating-badge.html" (dict "id" "hire" "text" (T "contact_me") "href" (printf "mailto:%s" .) "class" "badge-rotate--light") }}
+    {{- end }}
+    {{ partial "ui/social-links.html" . }}
     {{- with $contact.formAction }}
-      <form class="form contact__form" action="{{ . }}" method="post">
+      <form class="form hire__form" action="{{ . }}" method="post">
         <label class="form__field"><span>{{ T "form_name" }}</span><input name="name" autocomplete="name" required></label>
         <label class="form__field"><span>{{ T "form_email" }}</span><input name="email" type="email" autocomplete="email" required></label>
         <label class="form__field"><span>{{ T "form_message" }}</span><textarea name="message" rows="5" minlength="20" required></textarea></label>

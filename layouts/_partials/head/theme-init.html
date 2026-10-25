@@ -1,4 +1,4 @@
-{{- /* Applique le thème avant le premier rendu pour éviter le flash. */ -}}
+{{- /* Applique thème, couleur et sens d'écriture mémorisés avant le premier rendu. */ -}}
 <script>
   (function () {
     var root = document.documentElement;
@@ -9,6 +9,10 @@
       var stored = localStorage.getItem('theme');
       if (stored) dark = stored === 'dark';
       else if (mode === 'system') dark = matchMedia('(prefers-color-scheme: dark)').matches;
+      var accent = localStorage.getItem('accent');
+      if (accent) root.dataset.accent = accent;
+      var dir = localStorage.getItem('dir');
+      if (dir) root.dir = dir;
     } catch (e) {}
     root.dataset.theme = dark ? 'dark' : 'light';
   })();

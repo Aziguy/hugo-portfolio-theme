@@ -1,0 +1,24 @@
+{{- /* Parcours : onglets Formation / Expérience et frise alternée. */ -}}
+{{- $tabs := slice -}}
+{{- with site.Data.education }}{{ $tabs = $tabs | append (dict "id" "education" "label" (T "education_title") "items" .) }}{{ end -}}
+{{- with site.Data.experience }}{{ $tabs = $tabs | append (dict "id" "experience" "label" (T "experience_title") "items" .) }}{{ end -}}
+{{- with $tabs -}}
+<section class="section achievements" id="achievements" aria-labelledby="achievements-title">
+  {{ partial "ui/doodle.html" (dict "icon" "backpack" "class" "doodle--backpack") }}
+  {{ partial "ui/doodle.html" (dict "icon" "book-open" "class" "doodle--book") }}
+  <div class="container" data-tabs>
+    {{ partial "ui/section-header.html" (dict "title" (T "achievements_title") "id" "achievements-title") }}
+    <div class="filters tabs__list" role="tablist" aria-label="{{ T "achievements_title" }}">
+      {{- range $i, $tab := . }}
+        <button class="filters__button" type="button" role="tab" id="tab-{{ .id }}" aria-controls="panel-{{ .id }}"
+          aria-selected="{{ cond (eq $i 0) "true" "false" }}" tabindex="{{ cond (eq $i 0) "0" "-1" }}">{{ .label }}</button>
+      {{- end }}
+    </div>
+    {{- range $i, $tab := . }}
+      <div class="tabs__panel" role="tabpanel" id="panel-{{ .id }}" aria-labelledby="tab-{{ .id }}" tabindex="0"{{ if gt $i 0 }} hidden{{ end }}>
+        {{ partial "ui/alt-timeline.html" .items }}
+      </div>
+    {{- end }}
+  </div>
+</section>
+{{- end -}}

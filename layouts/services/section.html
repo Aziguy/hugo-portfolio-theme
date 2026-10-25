@@ -1,9 +1,9 @@
 {{ define "main" }}
   {{ partial "ui/page-header.html" . }}
-  <div class="section section--flush">
+  <div class="page-body services">
     <div class="container">
       {{- with .Content }}<div class="prose section__intro">{{ . }}</div>{{ end }}
-      <div class="grid grid--3">
+      <div class="grid grid--4">
         {{- range $i, $p := .RegularPages.ByWeight }}{{ partial "cards/service.html" (dict "page" $p "index" $i) }}{{ end }}
       </div>
     </div>

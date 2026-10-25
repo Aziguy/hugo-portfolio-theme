@@ -1,12 +1,13 @@
-{{- $pages := (where site.RegularPages "Section" "blog").ByDate.Reverse | first (site.Params.home.posts | default 3) -}}
+{{- $section := site.GetPage "/blog" -}}
+{{- $pages := (where site.RegularPages "Section" "blog").ByDate.Reverse | first (site.Params.home.posts | default 2) -}}
 {{- with $pages -}}
 <section class="section posts" id="posts" aria-labelledby="posts-title">
   <div class="container">
-    {{ partial "ui/section-header.html" (dict "eyebrow" (T "posts_title") "title" (site.GetPage "/blog").Title "id" "posts-title") }}
-    <div class="grid grid--3">
+    {{ partial "ui/section-header.html" (dict "title" $section.Title "id" "posts-title") }}
+    <div class="grid grid--2">
       {{- range $i, $p := . }}{{ partial "cards/post.html" (dict "page" $p "index" $i) }}{{ end }}
     </div>
-    <p class="section__more"><a class="btn" href="{{ (site.GetPage "/blog").RelPermalink }}">{{ T "posts_all" }}{{ partial "ui/icon.html" "arrow-right" }}</a></p>
+    <p class="section__more"><a class="btn" href="{{ $section.RelPermalink }}">{{ T "posts_all" }}{{ partial "ui/icon.html" "arrow-right" }}</a></p>
   </div>
 </section>
 {{- end -}}

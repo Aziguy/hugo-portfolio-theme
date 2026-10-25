@@ -1,31 +1,15 @@
 {{ define "main" }}
-  {{- $toc := and site.Params.blog.showToc (ne .Params.toc false) (gt (len .Fragments.Headings) 0) (ne .TableOfContents "<nav id=\"TableOfContents\"></nav>") }}
+  {{- $toc := and site.Params.blog.showToc (ne .Params.toc false) (gt (len .Fragments.HeadingsMap) 1) }}
+  {{- $meta := printf `<p class="post__meta">%s<time datetime="%s">%s %s</time>` (partial "ui/icon.html" "calendar") (.Date.Format "2006-01-02") (T "published_on") (.Date | time.Format (site.Params.dateFormat | default ":date_long")) }}
+  {{- if site.Params.blog.showReadingTime }}{{ $meta = printf `%s<span aria-hidden="true">·</span>%s%s` $meta (partial "ui/icon.html" "clock") (T "reading_time" .ReadingTime) }}{{ end }}
+  {{- $meta = printf "%s</p>" $meta }}
   <article class="post">
-    <header class="page-header">
-      <div class="container container--narrow">
-        <nav class="breadcrumb" aria-label="Breadcrumb">
-          <ol>
-            <li><a href="{{ site.Home.RelPermalink }}">{{ T "home" }}</a></li>
-            <li><a href="{{ .Parent.RelPermalink }}">{{ .Parent.LinkTitle }}</a></li>
-          </ol>
-        </nav>
-        <h1 class="page-header__title">{{ .Title }}</h1>
-        {{- with .Description }}<p class="page-header__lead">{{ . }}</p>{{ end }}
-        <p class="post__meta">
-          {{ partial "ui/icon.html" "calendar" }}
-          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ T "published_on" }} {{ .Date | time.Format (site.Params.dateFormat | default ":date_long") }}</time>
-          {{- if site.Params.blog.showReadingTime }}
-            <span aria-hidden="true">·</span>{{ partial "ui/icon.html" "clock" }}{{ T "reading_time" .ReadingTime }}
-          {{- end }}
-        </p>
-      </div>
-    </header>
-
-    <div class="section section--flush">
+    {{ partial "ui/page-header.html" (dict "page" . "meta" ($meta | safeHTML)) }}
+    <div class="page-body">
       <div class="container{{ if $toc }} post__layout{{ else }} container--narrow{{ end }}">
         <div class="post__body">
           {{- with .Params.cover }}
-            <figure class="post__cover">{{ partial "ui/image.html" (dict "page" $ "src" . "alt" $.Title "eager" true "sizes" "(min-width: 48rem) 48rem, 100vw") }}</figure>
+            <figure class="post__cover">{{ partial "ui/image.html" (dict "page" $ "src" . "alt" $.Title "eager" true "sizes" "(min-width: 50rem) 50rem, 100vw") }}</figure>
           {{- end }}
           <div class="prose">{{ .Content }}</div>
           {{ partial "ui/tags.html" (dict "page" .) }}
@@ -40,11 +24,11 @@
       </div>
     </div>
 
-    {{- with first 3 (where (site.RegularPages.Related .) "Section" .Section) }}
+    {{- with first 2 (where (site.RegularPages.Related .) "Section" .Section) }}
       <section class="section section--alt" aria-labelledby="related-title">
         <div class="container">
-          <h2 class="section-title" id="related-title">{{ T "related" }}</h2>
-          <div class="grid grid--3">
+          {{ partial "ui/section-header.html" (dict "title" (T "related") "id" "related-title") }}
+          <div class="grid grid--2">
             {{- range $i, $p := . }}{{ partial "cards/post.html" (dict "page" $p "index" $i) }}{{ end }}
           </div>
         </div>

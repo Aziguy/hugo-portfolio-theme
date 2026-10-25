@@ -1,7 +1,7 @@
-{{- /* (dict "page" $p "index" 0) */ -}}
+{{- /* (dict "page" $p "index" 0) : carte pastel, icône dans un cercle en débord. */ -}}
 {{- $p := .page -}}
-<article class="card card--link service-card" data-reveal style="--delay: {{ mul (.index | default 0) 80 }}ms">
-  <span class="card__icon card__icon--lg">{{ partial "ui/icon.html" ($p.Params.icon | default "sparkles") }}</span>
+<article class="service-card" data-reveal style="--delay: {{ mul (mod (.index | default 0) 4) 100 }}ms">
+  <span class="service-card__icon">{{ partial "ui/icon.html" ($p.Params.icon | default "sparkles") }}</span>
   <h3 class="card__title"><a class="card__link" href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
   {{- with $p.Description }}<p class="card__text">{{ . }}</p>{{ end }}
 </article>

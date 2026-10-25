@@ -1,0 +1,11 @@
+{{- /* Période compacte pour les pastilles : "2020-23", "2023-auj.", "2021". */ -}}
+{{- $start := index (split (string (.start | default "")) "-") 0 -}}
+{{- $end := string (.end | default "") -}}
+{{- $out := $start -}}
+{{- if eq $end "present" -}}
+  {{- $out = printf "%s-%s" $start (T "now_short") -}}
+{{- else if $end -}}
+  {{- $endYear := index (split $end "-") 0 -}}
+  {{- if ne $endYear $start }}{{ $out = printf "%s-%s" $start (substr $endYear 2 2) }}{{ end -}}
+{{- end -}}
+{{- return $out -}}

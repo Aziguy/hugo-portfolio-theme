@@ -1,15 +1,14 @@
 <footer class="site-footer">
   <div class="container site-footer__inner">
-    <div class="site-footer__brand">
-      <p class="site-footer__name">{{ site.Params.author.name }}</p>
-      {{- with partial "func/l.html" site.Params.author.jobTitle }}<p class="site-footer__role">{{ . }}</p>{{ end }}
-    </div>
-    {{ partial "ui/social-links.html" . }}
     <p class="site-footer__meta">
-      &copy; {{ now.Year }} {{ site.Params.author.name }}. {{ T "rights" }}
+      &copy; {{ now.Year }} <strong>{{ site.Params.author.name }}</strong>, {{ T "rights" }}
       {{- with site.Home.OutputFormats.Get "rss" }} · <a href="{{ .RelPermalink }}">{{ T "rss" }}</a>{{ end }}
-      · <a href="https://gohugo.io" target="_blank" rel="noopener noreferrer">{{ T "built_with" }}</a>
     </p>
-    <a class="icon-button back-to-top" href="#top" aria-label="{{ T "back_to_top" }}" title="{{ T "back_to_top" }}">{{ partial "ui/icon.html" "arrow-up" }}</a>
+    {{ partial "ui/social-links.html" . }}
   </div>
 </footer>
+<a class="back-to-top" href="#top" aria-label="{{ T "back_to_top" }}" data-back-to-top>
+  <svg class="back-to-top__ring" viewBox="0 0 52 52" aria-hidden="true" focusable="false"><circle cx="26" cy="26" r="24"/></svg>
+  {{ partial "ui/icon.html" "arrow-up" }}
+</a>
+{{- if ne site.Params.tools false }}{{ partial "site/tools.html" . }}{{ end }}

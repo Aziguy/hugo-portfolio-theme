@@ -1,6 +1,11 @@
-{{- /* (dict "eyebrow" "..." "title" "..." "text" "..." "id" "...") */ -}}
+{{- /* (dict "title" "À propos de moi" "text" "..." "id" "...") : le dernier mot prend la couleur d'accent. */ -}}
+{{- $words := split (.title | default "") " " -}}
+{{- $last := index (last 1 $words) 0 -}}
+{{- $head := delimit (first (sub (len $words) 1) $words) " " -}}
 <header class="section-header" data-reveal>
-  {{- with .eyebrow }}<p class="section-header__eyebrow">{{ . }}</p>{{ end }}
-  <h2 class="section-header__title"{{ with .id }} id="{{ . }}"{{ end }}>{{ .title }}</h2>
+  <h2 class="section-header__title"{{ with .id }} id="{{ . }}"{{ end }}>
+    {{- with $head }}{{ . }} {{ end }}<span class="accent">{{ $last }}</span>
+  </h2>
+  <span class="section-header__line" aria-hidden="true"></span>
   {{- with .text }}<p class="section-header__text">{{ . }}</p>{{ end }}
 </header>

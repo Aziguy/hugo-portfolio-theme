@@ -1,13 +1,14 @@
-{{- /* (dict "page" $p "index" 0) */ -}}
+{{- /* (dict "page" $p "index" 0) : carte horizontale, image à gauche. */ -}}
 {{- $p := .page -}}
-<article class="card card--link post-card" data-reveal style="--delay: {{ mul (.index | default 0) 80 }}ms">
+<article class="card card--link card--row post-card" data-reveal style="--delay: {{ mul (mod (.index | default 0) 2) 100 }}ms">
   {{- with $p.Params.cover }}
     <div class="card__media">
-      {{ partial "ui/image.html" (dict "page" $p "src" . "alt" "" "sizes" "(min-width: 64em) 33vw, (min-width: 40em) 50vw, 100vw") }}
+      {{ partial "ui/image.html" (dict "page" $p "src" . "alt" "" "sizes" "(min-width: 64em) 14rem, 40vw") }}
     </div>
   {{- end }}
   <div class="card__body">
-    <p class="card__meta">
+    <p class="card__kicker">
+      {{- with $p.GetTerms "categories" }}{{ (index . 0).LinkTitle }} · {{ end -}}
       <time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date | time.Format (site.Params.dateFormat | default ":date_long") }}</time>
       {{- if site.Params.blog.showReadingTime }} · {{ T "reading_time" $p.ReadingTime }}{{ end }}
     </p>

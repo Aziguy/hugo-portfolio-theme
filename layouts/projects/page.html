@@ -12,7 +12,7 @@
       <div class="project__layout">
         <div class="prose project__content">{{ .Content }}</div>
 
-        <aside class="card project__meta" aria-label="{{ .Title }}">
+        <aside class="card card--plain project__meta" aria-label="{{ .Title }}">
           <dl>
             {{- with $p.client }}<div><dt>{{ T "project_client" }}</dt><dd>{{ . }}</dd></div>{{ end }}
             {{- with $p.role }}<div><dt>{{ T "project_role" }}</dt><dd>{{ . }}</dd></div>{{ end }}
@@ -30,7 +30,7 @@
 
       {{- with $p.results }}
         <section class="project__results" aria-labelledby="results-title">
-          <h2 id="results-title">{{ T "project_results" }}</h2>
+          <h2 class="section-title" id="results-title">{{ T "project_results" }}</h2>
           <ul class="stats__list">
             {{- range . }}
               <li class="stats__item"><span class="stats__value">{{ .value }}</span><span class="stats__label">{{ .label }}</span></li>

@@ -2,11 +2,10 @@
   <div class="container site-header__inner">
     <a class="brand" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Title }}, {{ T "home" }}">
       {{- with site.Params.logo }}
-        <img class="brand__logo" src="{{ partial "func/image-url.html" (dict "page" $ "src" .) }}" alt="" width="40" height="40">
+        <img class="brand__logo" src="{{ partial "func/image-url.html" (dict "page" site.Home "src" .) }}" alt="">
       {{- else }}
-        <span class="brand__mark" aria-hidden="true">{{ range first 2 (split site.Params.author.name " ") }}{{ substr . 0 1 }}{{ end }}</span>
+        <span class="brand__name">{{ site.Title }}<span class="brand__dot">.</span></span>
       {{- end }}
-      <span class="brand__name">{{ site.Title }}</span>
     </a>
 
     {{ partial "site/nav.html" . }}

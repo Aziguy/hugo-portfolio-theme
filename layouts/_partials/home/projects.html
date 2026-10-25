@@ -1,14 +1,13 @@
+{{- $section := site.GetPage "/projects" -}}
 {{- $all := (where site.RegularPages "Section" "projects").ByDate.Reverse -}}
 {{- $featured := where $all "Params.featured" true -}}
-{{- $pages := $featured | append (complement $featured $all) | first (site.Params.home.projects | default 3) -}}
+{{- $pages := $featured | append (complement $featured $all) | first (site.Params.home.projects | default 6) -}}
 {{- with $pages -}}
-<section class="section section--alt projects" id="projects" aria-labelledby="projects-title">
+<section class="section projects" id="projects" aria-labelledby="projects-title">
   <div class="container">
-    {{ partial "ui/section-header.html" (dict "eyebrow" (T "projects_title") "title" (site.GetPage "/projects").Title "id" "projects-title") }}
-    <div class="grid grid--3">
-      {{- range $i, $p := . }}{{ partial "cards/project.html" (dict "page" $p "index" $i) }}{{ end }}
-    </div>
-    <p class="section__more"><a class="btn" href="{{ (site.GetPage "/projects").RelPermalink }}">{{ T "projects_all" }}{{ partial "ui/icon.html" "arrow-right" }}</a></p>
+    {{ partial "ui/section-header.html" (dict "title" $section.Title "id" "projects-title") }}
+    {{ partial "ui/project-grid.html" . }}
+    <p class="section__more"><a class="btn" href="{{ $section.RelPermalink }}">{{ T "projects_all" }}{{ partial "ui/icon.html" "arrow-right" }}</a></p>
   </div>
 </section>
 {{- end -}}

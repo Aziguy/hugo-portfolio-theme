@@ -1,8 +1,8 @@
 {{- with site.Data.skills -}}
 <section class="section section--alt skills" id="skills" aria-labelledby="skills-title">
   <div class="container">
-    {{ partial "ui/section-header.html" (dict "eyebrow" (T "skills_title") "title" (T "skills_title") "id" "skills-title") }}
-    {{ partial "ui/skills.html" . }}
+    {{ partial "ui/section-header.html" (dict "title" (T "skills_heading") "id" "skills-title") }}
+    {{ partial "ui/skill-pills.html" (dict "groups" . "row" true) }}
   </div>
 </section>
 {{- end -}}

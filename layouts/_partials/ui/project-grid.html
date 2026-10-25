@@ -1,0 +1,20 @@
+{{- /* Grille de projets filtrable par catégorie. Reçoit une liste de pages. */ -}}
+{{- $terms := slice -}}
+{{- range . }}{{ range .GetTerms "categories" }}{{ $terms = $terms | append .LinkTitle }}{{ end }}{{ end -}}
+<div data-filter-scope>
+  {{- with $terms | uniq | sort }}
+    {{- if gt (len .) 1 }}
+      <div class="filters" role="group" aria-label="{{ T "projects_filter" }}" data-reveal>
+        <button class="filters__button" type="button" data-filter="*" aria-pressed="true">{{ T "filter_all" }}</button>
+        {{- range . }}
+          <button class="filters__button" type="button" data-filter="{{ urlize . }}" aria-pressed="false">{{ . }}</button>
+        {{- end }}
+      </div>
+    {{- end }}
+  {{- end }}
+  <div class="grid grid--3" data-filter-items>
+    {{- range $i, $p := . }}{{ partial "cards/project.html" (dict "page" $p "index" $i) }}{{ end }}
+  </div>
+  <p class="filters__empty" data-filter-empty hidden>{{ T "projects_empty" }}</p>
+  <p class="sr-only" aria-live="polite" data-filter-status></p>
+</div>

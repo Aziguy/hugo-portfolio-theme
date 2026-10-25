@@ -1,30 +1,40 @@
 {{- $hero := .Params.hero | default dict -}}
 {{- $author := site.Params.author -}}
+{{- $names := split $author.name " " -}}
+{{- $role := partial "func/l.html" $author.jobTitle -}}
 {{- $contactHref := cond (in site.Params.home.sections "contact") "#contact" (printf "mailto:%s" $author.email) -}}
 <section class="hero" aria-labelledby="hero-title">
-  <p class="hero__watermark" aria-hidden="true">{{ $author.name }}</p>
+  <p class="hero__watermark hero__watermark--first" aria-hidden="true">{{ index $names 0 }}</p>
+  {{- if gt (len $names) 1 }}
+    <p class="hero__watermark hero__watermark--last" aria-hidden="true">{{ delimit (after 1 $names) " " }}</p>
+  {{- end }}
+  {{ partial "ui/doodle.html" (dict "icon" "squiggle" "class" "doodle--squiggle") }}
+  {{ partial "ui/doodle.html" (dict "icon" "asterisk" "class" "doodle--asterisk") }}
+  {{ partial "ui/doodle.html" (dict "icon" "diamond" "class" "doodle--diamond" "accent" true) }}
+  {{ partial "ui/doodle.html" (dict "icon" "sparkles" "class" "doodle--spark") }}
+
   <div class="container hero__inner">
+    {{- with $hero.image }}
+      <div class="hero__media" data-reveal>
+        {{ partial "ui/image.html" (dict "page" $ "src" . "alt" $author.name "class" "hero__portrait" "eager" true "sizes" "(min-width: 64em) 27rem, 90vw") }}
+      </div>
+    {{- end }}
     <div class="hero__content" data-reveal>
+      {{- with $hero.status }}<p class="status"><span class="status__dot" aria-hidden="true"></span>{{ . }}</p>{{ end }}
       <p class="hero__greeting">{{ T "hero_greeting" }}</p>
       <h1 class="hero__title" id="hero-title">{{ $author.name }}</h1>
-      {{- with partial "func/l.html" $author.jobTitle }}<p class="hero__role">{{ . }}</p>{{ end }}
+      {{- with $role }}<p class="hero__role">{{ T "hero_role" }} <span class="accent">{{ . }}</span></p>{{ end }}
       {{- with $hero.tagline }}<p class="hero__tagline">{{ . | markdownify }}</p>{{ end }}
-      {{- with $hero.status }}<p class="status"><span class="status__dot" aria-hidden="true"></span>{{ . }}</p>{{ end }}
       <div class="hero__actions">
-        <a class="btn btn--primary" href="{{ $contactHref }}">{{ T "contact_me" }}{{ partial "ui/icon.html" "arrow-right" }}</a>
-        {{- with site.GetPage "/projects" }}
-          <a class="btn" href="{{ .RelPermalink }}">{{ T "see_projects" }}</a>
-        {{- end }}
         {{- with partial "func/l.html" site.Params.resume.pdf }}
-          <a class="btn btn--ghost" href="{{ partial "func/image-url.html" (dict "page" $ "src" .) }}" download>{{ partial "ui/icon.html" "download" }}{{ T "download_cv" }}</a>
+          <a class="btn" href="{{ partial "func/image-url.html" (dict "page" $ "src" .) }}" download>{{ partial "ui/icon.html" "download" }}{{ T "download_cv" }}</a>
+        {{- end }}
+        <a class="btn" href="{{ $contactHref }}">{{ T "contact_me" }}{{ partial "ui/icon.html" "arrow-up-right" }}</a>
+        {{- with site.GetPage "/projects" }}
+          <a class="btn btn--primary" href="{{ .RelPermalink }}">{{ T "see_projects" }}</a>
         {{- end }}
       </div>
       {{ partial "ui/social-links.html" . }}
     </div>
-    {{- with $hero.image }}
-      <div class="hero__media" data-reveal>
-        {{ partial "ui/image.html" (dict "page" $ "src" . "alt" $author.name "class" "hero__portrait" "eager" true "sizes" "(min-width: 64em) 40vw, 80vw") }}
-      </div>
-    {{- end }}
   </div>
 </section>

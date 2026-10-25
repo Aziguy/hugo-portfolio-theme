@@ -1,0 +1,17 @@
+{{- /* Frise alternée : entrées de data/experience.yaml ou data/education.yaml. */ -}}
+<ol class="alt-timeline">
+  {{- range $i, $item := . }}
+    {{- $org := or .company .school }}
+    <li class="alt-timeline__item" style="--row: {{ add $i 1 }}" data-reveal>
+      <span class="alt-timeline__period" title="{{ partial "func/period.html" . }}"><span>{{ partial "func/period-short.html" . }}</span></span>
+      <article class="alt-timeline__card">
+        <h3 class="alt-timeline__title">{{ partial "func/l.html" (or .role .title) }}{{ with $org }} <span>- {{ . }}</span>{{ end }}</h3>
+        {{- with partial "func/l.html" (or .summary .description) }}<p class="alt-timeline__text">{{ . | markdownify }}</p>{{ end }}
+        {{- with partial "func/l.html" .highlights }}
+          <ul class="alt-timeline__list">{{ range . }}<li>{{ . | markdownify }}</li>{{ end }}</ul>
+        {{- end }}
+        {{- with .techs }}<ul class="chip-list">{{ range . }}<li class="chip">{{ . }}</li>{{ end }}</ul>{{ end }}
+      </article>
+    </li>
+  {{- end }}
+</ol>

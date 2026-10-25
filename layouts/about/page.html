@@ -1,16 +1,23 @@
 {{ define "main" }}
   {{ partial "ui/page-header.html" . }}
-  <div class="section section--flush">
-    <div class="container about__inner">
+  <section class="section about" aria-labelledby="about-page-title">
+    {{ partial "ui/doodle.html" (dict "icon" "notebook-pen" "class" "doodle--book") }}
+    {{ partial "ui/doodle.html" (dict "icon" "sparkles" "class" "doodle--spark") }}
+    <div class="container about-page">
       {{- with .Params.image }}
-        <figure class="about__media" data-reveal>
-          {{ partial "ui/image.html" (dict "page" $ "src" . "alt" site.Params.author.name "class" "about__photo" "eager" true "sizes" "(min-width: 64em) 30vw, 80vw") }}
+        <figure class="about-page__media" data-reveal>
+          {{ partial "ui/image.html" (dict "page" $ "src" . "alt" site.Params.author.name "eager" true "sizes" "(min-width: 56em) 40vw, 90vw") }}
         </figure>
       {{- end }}
-      <div class="prose">{{ .Content }}</div>
+      <div class="about-page__content" data-reveal>
+        {{ partial "ui/section-header.html" (dict "title" (.Params.heading | default .Title) "id" "about-page-title") }}
+        {{- with .Params.quote }}<p class="quote-outline">“{{ . }}”</p>{{ end }}
+        <div class="prose about__text">{{ .Content }}</div>
+        {{ partial "ui/signature.html" . }}
+      </div>
     </div>
-  </div>
-  {{- range .Params.sections | default (slice "stats" "skills" "testimonials") }}
+  </section>
+  {{- range .Params.sections | default (slice "skills" "testimonials") }}
     {{- if templates.Exists (printf "_partials/home/%s.html" .) }}{{ partial (printf "home/%s.html" .) $ }}{{ end }}
   {{- end }}
 {{ end }}

@@ -5,7 +5,8 @@
   {{- if strings.HasPrefix . "http" -}}
     {{- $url = . -}}
   {{- else -}}
-    {{- $res := or ($.page.Resources.Get .) (resources.Get (strings.TrimPrefix "/" .)) -}}
+    {{- $res := resources.Get (strings.TrimPrefix "/" .) -}}
+    {{- if and $.page (not (reflect.IsMap $.page)) }}{{ with $.page.Resources.Get . }}{{ $res = . }}{{ end }}{{ end -}}
     {{- if $res -}}
       {{- $url = cond $.absolute $res.Permalink $res.RelPermalink -}}
     {{- else -}}

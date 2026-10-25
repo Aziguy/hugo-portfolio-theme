@@ -2,7 +2,8 @@
 {{- $src := .src -}}
 {{- $res := "" -}}
 {{- if and $src (not (strings.HasPrefix $src "http")) -}}
-  {{- $res = or (.page.Resources.Get $src) (resources.Get (strings.TrimPrefix "/" $src)) -}}
+  {{- $res = resources.Get (strings.TrimPrefix "/" $src) -}}
+  {{- if and .page (not (reflect.IsMap .page)) }}{{ with .page.Resources.Get $src }}{{ $res = . }}{{ end }}{{ end -}}
 {{- end -}}
 {{- $loading := cond (.eager | default false) "eager" "lazy" -}}
 {{- if and $res (in (slice "jpeg" "png" "webp") $res.MediaType.SubType) -}}

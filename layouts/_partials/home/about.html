@@ -1,17 +1,26 @@
 {{- with .Params.about -}}
+{{- $author := site.Params.author -}}
 <section class="section about" id="about" aria-labelledby="about-title">
-  <div class="container about__inner">
-    {{- with .image }}
-      <figure class="about__media" data-reveal>
-        {{ partial "ui/image.html" (dict "page" $ "src" . "alt" site.Params.author.name "class" "about__photo" "sizes" "(min-width: 64em) 30vw, 80vw") }}
-      </figure>
-    {{- end }}
-    <div class="about__content">
-      {{ partial "ui/section-header.html" (dict "eyebrow" (T "about_title") "title" .title "id" "about-title") }}
-      <div class="prose" data-reveal>{{ .text | markdownify }}</div>
-      {{- with site.GetPage "/about" }}
-        <a class="btn" href="{{ .RelPermalink }}" data-reveal>{{ T "about_more" }}{{ partial "ui/icon.html" "arrow-right" }}</a>
+  {{ partial "ui/doodle.html" (dict "icon" "notebook-pen" "class" "doodle--book") }}
+  {{ partial "ui/doodle.html" (dict "icon" "asterisk" "class" "doodle--asterisk" "accent" true) }}
+  {{ partial "ui/doodle.html" (dict "icon" "sparkles" "class" "doodle--spark") }}
+  <div class="container">
+    {{ partial "ui/section-header.html" (dict "title" (.title | default (T "about_title")) "id" "about-title") }}
+    <div class="about__grid">
+      <div class="about__intro" data-reveal>
+        {{- with .quote }}<p class="quote-outline">“{{ . }}”</p>{{ end }}
+        <div class="about__text">{{ .text | markdownify }}</div>
+        {{ partial "ui/signature.html" . }}
+      </div>
+      {{- with .image }}
+        <figure class="about__media" data-reveal>
+          {{ partial "ui/image.html" (dict "page" $ "src" . "alt" $author.name "class" "about__photo" "sizes" "(min-width: 75em) 22rem, 80vw") }}
+          {{- with site.GetPage "/about" }}
+            {{ partial "ui/rotating-badge.html" (dict "id" "about" "text" .LinkTitle "href" .RelPermalink) }}
+          {{- end }}
+        </figure>
       {{- end }}
+      {{- with site.Data.skills }}{{ partial "ui/skill-pills.html" (dict "groups" (first 3 .)) }}{{ end }}
     </div>
   </div>
 </section>

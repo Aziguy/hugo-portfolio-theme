@@ -1,0 +1,13 @@
+{{- /* (dict "groups" site.Data.skills "row" true) : pastilles pastel avec jauge circulaire. */ -}}
+<ul class="skill-pills{{ if .row }} skill-pills--row{{ end }}">
+  {{- range $i, $group := .groups }}
+    {{- $names := slice }}{{ range .items }}{{ $names = $names | append (partial "func/l.html" .name) }}{{ end }}
+    <li class="skill-pill" data-reveal style="--delay: {{ mul $i 100 }}ms">
+      {{- with .level }}{{ partial "ui/ring.html" . }}{{ end }}
+      <div>
+        <h3 class="skill-pill__title">{{ partial "func/l.html" .title }} <small>({{ delimit (first 3 $names) ", " }})</small></h3>
+        {{- with partial "func/l.html" .summary }}<p class="skill-pill__text">{{ . }}</p>{{ end }}
+      </div>
+    </li>
+  {{- end }}
+</ul>

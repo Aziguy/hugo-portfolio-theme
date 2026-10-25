@@ -66,3 +66,18 @@ rss: Flux RSS
 not_found_title: Page introuvable
 not_found_text: La page demandée n'existe pas ou a été déplacée.
 back_home: Retour à l'accueil
+
+hero_role: Je suis
+achievements_title: Mon parcours
+testimonials_heading: Ils parlent de moi
+skills_heading: Mes compétences
+read_more: Lire la suite
+now_short: auj.
+main_nav: Navigation principale
+contact: Contact
+tools_title: Personnaliser
+tools_color: Couleur
+tools_direction: Sens de lecture
+tools_theme: Thème
+theme_light: Clair
+theme_dark: Sombre

@@ -66,3 +66,18 @@ rss: RSS feed
 not_found_title: Page not found
 not_found_text: The page you are looking for does not exist or has moved.
 back_home: Back to home
+
+hero_role: I am a
+achievements_title: My journey
+testimonials_heading: Kind words
+skills_heading: My skills
+read_more: Read more
+now_short: now
+main_nav: Main navigation
+contact: Contact
+tools_title: Customize
+tools_color: Color
+tools_direction: Reading direction
+tools_theme: Theme
+theme_light: Light
+theme_dark: Dark

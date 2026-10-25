@@ -1,0 +1,10 @@
+{{- /* Forme décorative : (dict "icon" "backpack" "class" "doodle--a" "accent" false). Icônes spéciales : squiggle, diamond. */ -}}
+<span class="doodle {{ .class }}{{ if .accent }} doodle--accent{{ end }}" aria-hidden="true">
+  {{- if eq .icon "squiggle" -}}
+    <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 30c6-12 10-12 14 0s8 12 14 0 8-12 10-6"/><path d="M30 10l6-4M34 16l7-2"/></svg>
+  {{- else if eq .icon "diamond" -}}
+    <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2"><rect x="12" y="12" width="24" height="24" rx="3" transform="rotate(30 24 24)"/><rect x="17" y="17" width="14" height="14" rx="2" transform="rotate(30 24 24)"/></svg>
+  {{- else -}}
+    {{ partial "ui/icon.html" .icon }}
+  {{- end -}}
+</span>

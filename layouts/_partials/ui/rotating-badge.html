@@ -1,0 +1,11 @@
+{{- /* (dict "id" "about" "text" "À propos" "href" "/about/" "class" "badge-rotate--light") */ -}}
+{{- $id := printf "badge-%s" .id -}}
+{{- $label := .text -}}
+<a class="badge-rotate {{ .class }}" href="{{ .href }}">
+  <svg class="badge-rotate__text" viewBox="0 0 100 100" aria-hidden="true" focusable="false">
+    <defs><path id="{{ $id }}" d="M50 50m-37 0a37 37 0 1 1 74 0a37 37 0 1 1-74 0"/></defs>
+    <text><textPath href="#{{ $id }}">{{ $label }} · {{ $label }} · {{ $label }} ·</textPath></text>
+  </svg>
+  {{ partial "ui/icon.html" "arrow-up-right" }}
+  <span class="sr-only">{{ $label }}</span>
+</a>

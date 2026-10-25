@@ -1,0 +1,11 @@
+{{- /* Jauge circulaire, reçoit un pourcentage (0 à 100). */ -}}
+{{- $value := int . -}}
+{{- $circumference := 213.63 -}}
+{{- $dash := mul (float $value) (div $circumference 100) -}}
+<span class="ring" role="img" aria-label="{{ $value }}%">
+  <svg viewBox="0 0 80 80" aria-hidden="true" focusable="false">
+    <circle class="ring__track" cx="40" cy="40" r="34"/>
+    <circle class="ring__value" cx="40" cy="40" r="34" stroke-dasharray="{{ $dash }} {{ $circumference }}" style="--dash: {{ $dash }}"/>
+  </svg>
+  <span class="ring__label" aria-hidden="true">{{ $value }}%</span>
+</span>

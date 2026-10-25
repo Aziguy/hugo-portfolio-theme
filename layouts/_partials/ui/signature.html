@@ -1,0 +1,7 @@
+{{- /* Intitulé, nom et signature de l'auteur. */ -}}
+{{- $author := site.Params.author -}}
+<div class="about__signature">
+  {{- with partial "func/l.html" $author.jobTitle }}<strong>{{ . }}</strong>{{ end }}
+  <span>{{ $author.name }}</span>
+  {{- with $author.signature }}<img src="{{ partial "func/image-url.html" (dict "page" site.Home "src" .) }}" alt="" width="128" height="64" loading="lazy">{{ end }}
+</div>

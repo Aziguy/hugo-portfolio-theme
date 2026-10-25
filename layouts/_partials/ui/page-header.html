@@ -1,15 +1,21 @@
-{{- /* En-tête de page : titre, description, fil d'Ariane. Reçoit la page. */ -}}
+{{- /* Bandeau sombre des pages internes. (dict "page" . "meta" "html facultatif") ou la page directement. */ -}}
+{{- $p := . -}}
+{{- $meta := "" -}}
+{{- if reflect.IsMap . }}{{ $p = .page }}{{ $meta = .meta }}{{ end -}}
 <header class="page-header">
+  {{ partial "ui/doodle.html" (dict "icon" "asterisk" "class" "doodle--ph-a") }}
+  {{ partial "ui/doodle.html" (dict "icon" "squiggle" "class" "doodle--ph-b") }}
   <div class="container">
+    <h1 class="page-header__title">{{ $p.Title }}</h1>
+    {{- with $p.Description }}<p class="page-header__lead">{{ . }}</p>{{ end }}
+    {{- with $meta }}{{ . }}{{ end }}
     <nav class="breadcrumb" aria-label="Breadcrumb">
       <ol>
-        {{- range .Ancestors.Reverse }}
+        {{- range $p.Ancestors.Reverse }}
           <li><a href="{{ .RelPermalink }}">{{ if .IsHome }}{{ T "home" }}{{ else }}{{ .LinkTitle }}{{ end }}</a></li>
         {{- end }}
-        <li aria-current="page">{{ .LinkTitle }}</li>
+        <li aria-current="page">{{ $p.LinkTitle }}</li>
       </ol>
     </nav>
-    <h1 class="page-header__title">{{ .Title }}</h1>
-    {{- with .Description }}<p class="page-header__lead">{{ . }}</p>{{ end }}
   </div>
 </header>
