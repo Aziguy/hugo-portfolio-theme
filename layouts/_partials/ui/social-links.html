@@ -1,0 +1,14 @@
+{{- with site.Data.socials -}}
+<ul class="social-links">
+  {{- range . }}
+    <li>
+      <a href="{{ .url }}" target="_blank" rel="me noopener noreferrer" aria-label="{{ .name }}" title="{{ .name }}">
+        {{- partial "ui/icon.html" (.icon | default "globe") -}}
+      </a>
+    </li>
+  {{- end }}
+  {{- with site.Params.author.email }}
+    <li><a href="mailto:{{ . }}" aria-label="E-mail" title="E-mail">{{ partial "ui/icon.html" "mail" }}</a></li>
+  {{- end }}
+</ul>
+{{- end -}}

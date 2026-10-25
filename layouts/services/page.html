@@ -1,0 +1,15 @@
+{{ define "main" }}
+  {{ partial "ui/page-header.html" . }}
+  <div class="section section--flush">
+    <div class="container container--narrow service">
+      <span class="card__icon card__icon--lg">{{ partial "ui/icon.html" (.Params.icon | default "sparkles") }}</span>
+      <div class="prose">{{ .Content }}</div>
+      {{- with .Params.features }}
+        <ul class="checklist">
+          {{- range . }}<li>{{ partial "ui/icon.html" "circle-check" }}<span>{{ . }}</span></li>{{ end }}
+        </ul>
+      {{- end }}
+    </div>
+  </div>
+  {{ partial "home/contact.html" . }}
+{{ end }}

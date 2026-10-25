@@ -1,0 +1,9 @@
+{{- /* (dict "name" "github" "class" "...") ou simplement "github". Icônes dans assets/icons/. */ -}}
+{{- $name := . -}}
+{{- $class := "" -}}
+{{- if reflect.IsMap . }}{{ $name = .name }}{{ $class = .class | default "" }}{{ end -}}
+{{- with resources.Get (printf "icons/%s.svg" $name) -}}
+  {{- replace (.Content | strings.TrimSpace) "<svg " (printf "<svg class=\"icon %s\" " $class) 1 | safeHTML -}}
+{{- else -}}
+  {{- warnf "Icône introuvable : %s" $name -}}
+{{- end -}}

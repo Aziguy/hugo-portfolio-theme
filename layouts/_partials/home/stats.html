@@ -1,0 +1,15 @@
+{{- with site.Data.stats -}}
+<section class="section section--tight stats" aria-label="{{ T "about_title" }}">
+  <div class="container">
+    <ul class="stats__list">
+      {{- range $i, $stat := . }}
+        <li class="stats__item" data-reveal style="--delay: {{ mul $i 80 }}ms">
+          {{- with .icon }}{{ partial "ui/icon.html" (dict "name" . "class" "stats__icon") }}{{ end }}
+          <span class="stats__value">{{ .value }}</span>
+          <span class="stats__label">{{ partial "func/l.html" .label }}</span>
+        </li>
+      {{- end }}
+    </ul>
+  </div>
+</section>
+{{- end -}}

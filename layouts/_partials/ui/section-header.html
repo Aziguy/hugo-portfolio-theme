@@ -1,0 +1,6 @@
+{{- /* (dict "eyebrow" "..." "title" "..." "text" "..." "id" "...") */ -}}
+<header class="section-header" data-reveal>
+  {{- with .eyebrow }}<p class="section-header__eyebrow">{{ . }}</p>{{ end }}
+  <h2 class="section-header__title"{{ with .id }} id="{{ . }}"{{ end }}>{{ .title }}</h2>
+  {{- with .text }}<p class="section-header__text">{{ . }}</p>{{ end }}
+</header>

@@ -1,0 +1,4 @@
+{{- /* {{< notice type="info" >}}Texte en **Markdown**{{< /notice >}}, type : info, success, warning. */ -}}
+<aside class="notice notice--{{ .Get "type" | default "info" }}" role="note">
+  {{- .Inner | .Page.RenderString (dict "display" "block") -}}
+</aside>

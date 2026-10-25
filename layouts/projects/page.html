@@ -1,0 +1,45 @@
+{{ define "main" }}
+  {{- $p := .Params }}
+  {{ partial "ui/page-header.html" . }}
+  <article class="section section--flush project">
+    <div class="container">
+      {{- with $p.cover }}
+        <figure class="project__cover">
+          {{ partial "ui/image.html" (dict "page" $ "src" . "alt" $.Title "eager" true "sizes" "(min-width: 72rem) 72rem, 100vw") }}
+        </figure>
+      {{- end }}
+
+      <div class="project__layout">
+        <div class="prose project__content">{{ .Content }}</div>
+
+        <aside class="card project__meta" aria-label="{{ .Title }}">
+          <dl>
+            {{- with $p.client }}<div><dt>{{ T "project_client" }}</dt><dd>{{ . }}</dd></div>{{ end }}
+            {{- with $p.role }}<div><dt>{{ T "project_role" }}</dt><dd>{{ . }}</dd></div>{{ end }}
+            {{- with partial "func/period.html" (dict "start" $p.start "end" $p.end) }}<div><dt>{{ T "project_period" }}</dt><dd>{{ . }}</dd></div>{{ end }}
+            {{- with $p.technologies }}
+              <div><dt>{{ T "project_stack" }}</dt><dd><ul class="chip-list">{{ range . }}<li class="chip">{{ . }}</li>{{ end }}</ul></dd></div>
+            {{- end }}
+          </dl>
+          <div class="project__links">
+            {{- with $p.links.demo }}<a class="btn btn--primary" href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ T "project_demo" }}{{ partial "ui/icon.html" "external-link" }}</a>{{ end }}
+            {{- with $p.links.repo }}<a class="btn" href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ partial "ui/icon.html" "github" }}{{ T "project_repo" }}</a>{{ end }}
+          </div>
+        </aside>
+      </div>
+
+      {{- with $p.results }}
+        <section class="project__results" aria-labelledby="results-title">
+          <h2 id="results-title">{{ T "project_results" }}</h2>
+          <ul class="stats__list">
+            {{- range . }}
+              <li class="stats__item"><span class="stats__value">{{ .value }}</span><span class="stats__label">{{ .label }}</span></li>
+            {{- end }}
+          </ul>
+        </section>
+      {{- end }}
+
+      {{ partial "ui/prev-next.html" . }}
+    </div>
+  </article>
+{{ end }}

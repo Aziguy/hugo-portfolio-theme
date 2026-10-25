@@ -1,0 +1,54 @@
+{{ define "main" }}
+  {{- $toc := and site.Params.blog.showToc (ne .Params.toc false) (gt (len .Fragments.Headings) 0) (ne .TableOfContents "<nav id=\"TableOfContents\"></nav>") }}
+  <article class="post">
+    <header class="page-header">
+      <div class="container container--narrow">
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="{{ site.Home.RelPermalink }}">{{ T "home" }}</a></li>
+            <li><a href="{{ .Parent.RelPermalink }}">{{ .Parent.LinkTitle }}</a></li>
+          </ol>
+        </nav>
+        <h1 class="page-header__title">{{ .Title }}</h1>
+        {{- with .Description }}<p class="page-header__lead">{{ . }}</p>{{ end }}
+        <p class="post__meta">
+          {{ partial "ui/icon.html" "calendar" }}
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ T "published_on" }} {{ .Date | time.Format (site.Params.dateFormat | default ":date_long") }}</time>
+          {{- if site.Params.blog.showReadingTime }}
+            <span aria-hidden="true">·</span>{{ partial "ui/icon.html" "clock" }}{{ T "reading_time" .ReadingTime }}
+          {{- end }}
+        </p>
+      </div>
+    </header>
+
+    <div class="section section--flush">
+      <div class="container{{ if $toc }} post__layout{{ else }} container--narrow{{ end }}">
+        <div class="post__body">
+          {{- with .Params.cover }}
+            <figure class="post__cover">{{ partial "ui/image.html" (dict "page" $ "src" . "alt" $.Title "eager" true "sizes" "(min-width: 48rem) 48rem, 100vw") }}</figure>
+          {{- end }}
+          <div class="prose">{{ .Content }}</div>
+          {{ partial "ui/tags.html" (dict "page" .) }}
+          {{ partial "ui/prev-next.html" . }}
+        </div>
+        {{- if $toc }}
+          <aside class="post__toc" aria-labelledby="toc-title">
+            <p class="post__toc-title" id="toc-title">{{ T "toc" }}</p>
+            {{ .TableOfContents }}
+          </aside>
+        {{- end }}
+      </div>
+    </div>
+
+    {{- with first 3 (where (site.RegularPages.Related .) "Section" .Section) }}
+      <section class="section section--alt" aria-labelledby="related-title">
+        <div class="container">
+          <h2 class="section-title" id="related-title">{{ T "related" }}</h2>
+          <div class="grid grid--3">
+            {{- range $i, $p := . }}{{ partial "cards/post.html" (dict "page" $p "index" $i) }}{{ end }}
+          </div>
+        </div>
+      </section>
+    {{- end }}
+  </article>
+{{ end }}

@@ -1,0 +1,17 @@
+{{ define "main" }}
+  {{ partial "ui/page-header.html" . }}
+  <div class="section section--flush">
+    <div class="container">
+      <div class="grid grid--3">
+        {{- range $i, $p := .Paginator.Pages }}
+          {{- if eq $p.Section "projects" }}
+            {{ partial "cards/project.html" (dict "page" $p "index" $i) }}
+          {{- else }}
+            {{ partial "cards/post.html" (dict "page" $p "index" $i) }}
+          {{- end }}
+        {{- end }}
+      </div>
+      {{ partial "ui/pagination.html" . }}
+    </div>
+  </div>
+{{ end }}

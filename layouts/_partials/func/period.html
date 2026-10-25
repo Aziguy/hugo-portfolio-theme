@@ -1,0 +1,3 @@
+{{- $start := cond (isset . "start") (partial "func/date.html" .start) "" -}}
+{{- $end := cond (isset . "end") (partial "func/date.html" .end) "" -}}
+{{- return (delimit (slice $start $end | complement (slice "")) " - ") -}}

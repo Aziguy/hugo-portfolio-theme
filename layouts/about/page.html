@@ -1,0 +1,16 @@
+{{ define "main" }}
+  {{ partial "ui/page-header.html" . }}
+  <div class="section section--flush">
+    <div class="container about__inner">
+      {{- with .Params.image }}
+        <figure class="about__media" data-reveal>
+          {{ partial "ui/image.html" (dict "page" $ "src" . "alt" site.Params.author.name "class" "about__photo" "eager" true "sizes" "(min-width: 64em) 30vw, 80vw") }}
+        </figure>
+      {{- end }}
+      <div class="prose">{{ .Content }}</div>
+    </div>
+  </div>
+  {{- range .Params.sections | default (slice "stats" "skills" "testimonials") }}
+    {{- if templates.Exists (printf "_partials/home/%s.html" .) }}{{ partial (printf "home/%s.html" .) $ }}{{ end }}
+  {{- end }}
+{{ end }}

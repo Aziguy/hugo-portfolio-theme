@@ -1,0 +1,22 @@
+{{- $pager := .Paginator -}}
+{{- if gt $pager.TotalPages 1 -}}
+<nav class="pagination" aria-label="{{ T "pagination" }}">
+  {{- with $pager.Prev }}
+    <a class="pagination__link" href="{{ .URL }}" rel="prev">{{ partial "ui/icon.html" "chevron-left" }}<span>{{ T "previous" }}</span></a>
+  {{- end }}
+  <ol class="pagination__pages">
+    {{- range $pager.Pagers }}
+      <li>
+        {{- if eq . $pager }}
+          <span class="pagination__page" aria-current="page">{{ .PageNumber }}</span>
+        {{- else }}
+          <a class="pagination__page" href="{{ .URL }}" aria-label="{{ T "page_n" .PageNumber }}">{{ .PageNumber }}</a>
+        {{- end }}
+      </li>
+    {{- end }}
+  </ol>
+  {{- with $pager.Next }}
+    <a class="pagination__link" href="{{ .URL }}" rel="next"><span>{{ T "next" }}</span>{{ partial "ui/icon.html" "chevron-right" }}</a>
+  {{- end }}
+</nav>
+{{- end -}}

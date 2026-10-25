@@ -1,0 +1,19 @@
+{{- /* (dict "page" . "src" "..." "alt" "..." "class" "..." "sizes" "..." "eager" false) */ -}}
+{{- $src := .src -}}
+{{- $res := "" -}}
+{{- if and $src (not (strings.HasPrefix $src "http")) -}}
+  {{- $res = or (.page.Resources.Get $src) (resources.Get (strings.TrimPrefix "/" $src)) -}}
+{{- end -}}
+{{- $loading := cond (.eager | default false) "eager" "lazy" -}}
+{{- if and $res (in (slice "jpeg" "png" "webp") $res.MediaType.SubType) -}}
+  {{- $srcset := slice -}}
+  {{- range slice 480 800 1200 -}}
+    {{- if ge $res.Width . -}}
+      {{- $img := $res.Resize (printf "%dx" .) -}}
+      {{- $srcset = $srcset | append (printf "%s %dw" $img.RelPermalink .) -}}
+    {{- end -}}
+  {{- end -}}
+  <img src="{{ $res.RelPermalink }}"{{ with $srcset }} srcset="{{ delimit . ", " }}" sizes="{{ $.sizes | default "100vw" }}"{{ end }} width="{{ $res.Width }}" height="{{ $res.Height }}" alt="{{ .alt }}" class="{{ .class }}" loading="{{ $loading }}" decoding="async">
+{{- else -}}
+  <img src="{{ partial "func/image-url.html" (dict "page" .page "src" $src) }}" alt="{{ .alt }}" class="{{ .class }}" loading="{{ $loading }}" decoding="async">
+{{- end -}}

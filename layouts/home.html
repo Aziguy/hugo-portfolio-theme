@@ -1,0 +1,11 @@
+{{ define "main" }}
+  {{- /* Sections déclarées dans params.home.sections, rendues dans l'ordre. */ -}}
+  {{- range site.Params.home.sections }}
+    {{- $tpl := printf "_partials/home/%s.html" . }}
+    {{- if templates.Exists $tpl }}
+      {{- partial (printf "home/%s.html" .) $ }}
+    {{- else }}
+      {{- warnf "Section d'accueil inconnue : %q (layouts/%s)" . $tpl }}
+    {{- end }}
+  {{- end }}
+{{ end }}

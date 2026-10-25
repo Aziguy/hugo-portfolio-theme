@@ -1,0 +1,11 @@
+{{- /* Chemins internes résolus vers la page (langue et baseURL compris), liens externes dans un nouvel onglet. */ -}}
+{{- $url := urls.Parse .Destination -}}
+{{- $href := .Destination -}}
+{{- $external := and $url.IsAbs (ne $url.Host (urls.Parse site.Home.Permalink).Host) -}}
+{{- if and (not $url.IsAbs) $url.Path -}}
+  {{- with or (.Page.GetPage $url.Path) (site.GetPage $url.Path) -}}
+    {{- $href = .RelPermalink -}}
+    {{- with $url.Fragment }}{{ $href = printf "%s#%s" $href . }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+<a href="{{ $href }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $external }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .Text }}</a>

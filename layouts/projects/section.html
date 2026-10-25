@@ -1,0 +1,26 @@
+{{ define "main" }}
+  {{ partial "ui/page-header.html" . }}
+  {{- $pages := .RegularPages.ByDate.Reverse }}
+  <div class="section section--flush">
+    <div class="container" data-filter-scope>
+      {{- with .Content }}<div class="prose section__intro">{{ . }}</div>{{ end }}
+
+      {{- $terms := slice }}
+      {{- range $pages }}{{ range .GetTerms "categories" }}{{ $terms = $terms | append .LinkTitle }}{{ end }}{{ end }}
+      {{- with $terms | uniq | sort }}
+        <div class="filters" role="group" aria-label="{{ T "projects_filter" }}">
+          <button class="chip chip--button" type="button" data-filter="*" aria-pressed="true">{{ T "filter_all" }}</button>
+          {{- range . }}
+            <button class="chip chip--button" type="button" data-filter="{{ urlize . }}" aria-pressed="false">{{ . }}</button>
+          {{- end }}
+        </div>
+      {{- end }}
+
+      <div class="grid grid--3" data-filter-items>
+        {{- range $i, $p := $pages }}{{ partial "cards/project.html" (dict "page" $p "index" $i) }}{{ end }}
+      </div>
+      <p class="filters__empty" data-filter-empty hidden>{{ T "projects_empty" }}</p>
+      <p class="sr-only" aria-live="polite" data-filter-status></p>
+    </div>
+  </div>
+{{ end }}

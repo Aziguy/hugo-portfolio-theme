@@ -1,0 +1,6 @@
+{{- /* Localise une valeur : chaîne simple ou dictionnaire { fr = "...", en = "..." }. */ -}}
+{{- $v := . -}}
+{{- if reflect.IsMap $v -}}
+  {{- $v = or (index $v site.Language.Lang) (index $v site.Sites.Default.Language.Lang) "" -}}
+{{- end -}}
+{{- return $v -}}

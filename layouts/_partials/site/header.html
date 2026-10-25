@@ -1,0 +1,24 @@
+<header class="site-header" data-header>
+  <div class="container site-header__inner">
+    <a class="brand" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Title }}, {{ T "home" }}">
+      {{- with site.Params.logo }}
+        <img class="brand__logo" src="{{ partial "func/image-url.html" (dict "page" $ "src" .) }}" alt="" width="40" height="40">
+      {{- else }}
+        <span class="brand__mark" aria-hidden="true">{{ range first 2 (split site.Params.author.name " ") }}{{ substr . 0 1 }}{{ end }}</span>
+      {{- end }}
+      <span class="brand__name">{{ site.Title }}</span>
+    </a>
+
+    {{ partial "site/nav.html" . }}
+
+    <div class="site-header__actions">
+      {{ partial "site/lang-switch.html" . }}
+      {{ partial "site/theme-toggle.html" . }}
+      <button class="icon-button nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" data-nav-toggle
+        data-label-open="{{ T "menu_open" }}" data-label-close="{{ T "menu_close" }}" aria-label="{{ T "menu_open" }}">
+        {{- partial "ui/icon.html" (dict "name" "menu" "class" "nav-toggle__open") -}}
+        {{- partial "ui/icon.html" (dict "name" "x" "class" "nav-toggle__close") -}}
+      </button>
+    </div>
+  </div>
+</header>

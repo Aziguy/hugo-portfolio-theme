@@ -1,0 +1,12 @@
+{{ define "main" }}
+  {{ partial "ui/page-header.html" . }}
+  <div class="section section--flush">
+    <div class="container">
+      <ul class="tag-list tag-list--lg">
+        {{- range .Data.Terms.ByCount }}
+          <li><a class="chip" href="{{ .Page.RelPermalink }}">{{ .Page.LinkTitle }} <span class="chip__count">{{ .Count }}</span></a></li>
+        {{- end }}
+      </ul>
+    </div>
+  </div>
+{{ end }}

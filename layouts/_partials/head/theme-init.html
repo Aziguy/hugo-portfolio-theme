@@ -1,0 +1,15 @@
+{{- /* Applique le thème avant le premier rendu pour éviter le flash. */ -}}
+<script>
+  (function () {
+    var root = document.documentElement;
+    root.classList.replace('no-js', 'js');
+    var mode = {{ site.Params.colorScheme | default "system" }};
+    var dark = mode === 'dark';
+    try {
+      var stored = localStorage.getItem('theme');
+      if (stored) dark = stored === 'dark';
+      else if (mode === 'system') dark = matchMedia('(prefers-color-scheme: dark)').matches;
+    } catch (e) {}
+    root.dataset.theme = dark ? 'dark' : 'light';
+  })();
+</script>

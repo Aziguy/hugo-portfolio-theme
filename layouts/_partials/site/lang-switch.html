@@ -1,0 +1,18 @@
+{{- /* Lien vers la traduction de la page, sinon vers l'accueil de la langue. */ -}}
+{{- if hugo.IsMultilingual -}}
+  {{- $page := . -}}
+  <ul class="lang-switch" aria-label="{{ T "language" }}">
+    {{- range site.Home.AllTranslations }}
+      {{- $lang := .Language.Lang }}
+      {{- $target := . }}
+      {{- range $page.AllTranslations }}{{ if eq .Language.Lang $lang }}{{ $target = . }}{{ end }}{{ end }}
+      <li>
+        {{- if eq $lang site.Language.Lang }}
+          <span class="lang-switch__item" aria-current="true">{{ upper $lang }}</span>
+        {{- else }}
+          <a class="lang-switch__item" href="{{ $target.RelPermalink }}" hreflang="{{ $lang }}" lang="{{ $lang }}" title="{{ .Language.LanguageName }}">{{ upper $lang }}</a>
+        {{- end }}
+      </li>
+    {{- end }}
+  </ul>
+{{- end -}}

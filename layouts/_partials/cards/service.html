@@ -1,0 +1,7 @@
+{{- /* (dict "page" $p "index" 0) */ -}}
+{{- $p := .page -}}
+<article class="card card--link service-card" data-reveal style="--delay: {{ mul (.index | default 0) 80 }}ms">
+  <span class="card__icon card__icon--lg">{{ partial "ui/icon.html" ($p.Params.icon | default "sparkles") }}</span>
+  <h3 class="card__title"><a class="card__link" href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
+  {{- with $p.Description }}<p class="card__text">{{ . }}</p>{{ end }}
+</article>

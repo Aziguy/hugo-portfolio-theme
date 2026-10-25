@@ -1,0 +1,4 @@
+{{- /* {{< button href="/projects/" style="primary" >}}Texte{{< /button >}} */ -}}
+{{- $href := .Get "href" -}}
+{{- with and (not (strings.HasPrefix $href "http")) (site.GetPage $href) }}{{ $href = .RelPermalink }}{{ end -}}
+<a class="btn{{ with .Get "style" }} btn--{{ . }}{{ end }}" href="{{ $href }}">{{ .Inner | .Page.RenderString }}</a>

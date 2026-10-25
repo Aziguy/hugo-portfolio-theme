@@ -1,0 +1,17 @@
+{{- /* (dict "page" . "src" "chemin" "absolute" false) : ressource de page, puis assets/, puis static/. */ -}}
+{{- $src := .src -}}
+{{- $url := "" -}}
+{{- with $src -}}
+  {{- if strings.HasPrefix . "http" -}}
+    {{- $url = . -}}
+  {{- else -}}
+    {{- $res := or ($.page.Resources.Get .) (resources.Get (strings.TrimPrefix "/" .)) -}}
+    {{- if $res -}}
+      {{- $url = cond $.absolute $res.Permalink $res.RelPermalink -}}
+    {{- else -}}
+      {{- $path := strings.TrimPrefix "/" . -}}
+      {{- $url = cond $.absolute (absURL $path) (relURL $path) -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $url -}}

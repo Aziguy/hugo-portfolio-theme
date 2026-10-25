@@ -1,0 +1,14 @@
+{{- /* Ordre : fondations, puis composants, sections et pages, puis assets/css/custom.css du site. */ -}}
+{{- $resources := slice -}}
+{{- range slice "tokens" "fonts" "base" "layout" -}}
+  {{- $resources = $resources | append (resources.Get (printf "css/%s.css" .)) -}}
+{{- end -}}
+{{- range slice "components" "sections" "pages" -}}
+  {{- range resources.Match (printf "css/%s/*.css" .) -}}
+    {{- $resources = $resources | append . -}}
+  {{- end -}}
+{{- end -}}
+{{- with resources.Get "css/custom.css" }}{{ $resources = $resources | append . }}{{ end -}}
+{{- $css := $resources | resources.Concat "css/main.css" -}}
+{{- if hugo.IsProduction }}{{ $css = $css | minify | fingerprint }}{{ end }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}"{{ with $css.Data.Integrity }} integrity="{{ . }}"{{ end }}>

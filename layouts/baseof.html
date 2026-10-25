@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="{{ site.Language.LanguageCode | default site.Language.Lang }}" dir="{{ site.Language.LanguageDirection | default "ltr" }}" data-accent="{{ site.Params.accent | default "rose" }}" class="no-js">
+<head>
+  {{- partial "head/meta.html" . }}
+  {{- partial "head/theme-init.html" . }}
+  {{- partial "head/seo.html" . }}
+  {{- partial "head/styles.html" . }}
+  {{- partial "head/schema.html" . }}
+  {{- partial "head/scripts.html" . }}
+  {{- if templates.Exists "_partials/head/custom.html" }}{{ partial "head/custom.html" . }}{{ end }}
+</head>
+<body id="top" class="kind-{{ .Kind }}{{ with .Section }} section-{{ . }}{{ end }}">
+  <a class="skip-link" href="#main">{{ T "skip_to_content" }}</a>
+  {{ partial "site/header.html" . }}
+  <main id="main" tabindex="-1">
+    {{- block "main" . }}{{ end }}
+  </main>
+  {{ partial "site/footer.html" . }}
+</body>
+</html>

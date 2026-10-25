@@ -1,0 +1,17 @@
+{{- /* (dict "page" $p "index" 0) */ -}}
+{{- $p := .page -}}
+<article class="card card--link post-card" data-reveal style="--delay: {{ mul (.index | default 0) 80 }}ms">
+  {{- with $p.Params.cover }}
+    <div class="card__media">
+      {{ partial "ui/image.html" (dict "page" $p "src" . "alt" "" "sizes" "(min-width: 64em) 33vw, (min-width: 40em) 50vw, 100vw") }}
+    </div>
+  {{- end }}
+  <div class="card__body">
+    <p class="card__meta">
+      <time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date | time.Format (site.Params.dateFormat | default ":date_long") }}</time>
+      {{- if site.Params.blog.showReadingTime }} · {{ T "reading_time" $p.ReadingTime }}{{ end }}
+    </p>
+    <h3 class="card__title"><a class="card__link" href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
+    <p class="card__text">{{ or $p.Description ($p.Summary | plainify | truncate 140) }}</p>
+  </div>
+</article>

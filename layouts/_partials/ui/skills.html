@@ -1,0 +1,21 @@
+{{- /* Grille des groupes de compétences (data/skills.yaml). */ -}}
+<div class="grid grid--3">
+  {{- range $i, $group := . }}
+    <article class="card skill-group" data-reveal style="--delay: {{ mul $i 80 }}ms">
+      <h3 class="card__title">
+        {{- with .icon }}<span class="card__icon">{{ partial "ui/icon.html" . }}</span>{{ end }}
+        {{ partial "func/l.html" .title }}
+      </h3>
+      <ul class="skill-group__list">
+        {{- range .items }}
+          <li class="skill">
+            <span class="skill__name">{{ partial "func/l.html" .name }}</span>
+            {{- with .level }}
+              <span class="meter" role="meter" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ . }}" aria-label="{{ . }}%"><span style="--value: {{ . }}%"></span></span>
+            {{- end }}
+          </li>
+        {{- end }}
+      </ul>
+    </article>
+  {{- end }}
+</div>

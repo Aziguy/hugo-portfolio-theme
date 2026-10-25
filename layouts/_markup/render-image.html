@@ -1,0 +1,9 @@
+{{- $img := partial "ui/image.html" (dict "page" .Page "src" .Destination "alt" .PlainText "sizes" "(min-width: 48rem) 48rem, 100vw") -}}
+{{- if .IsBlock -}}
+<figure class="figure">
+  {{ $img }}
+  {{- with .Title }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>
+{{- else -}}
+  {{ $img }}
+{{- end -}}

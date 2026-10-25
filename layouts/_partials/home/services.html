@@ -1,0 +1,12 @@
+{{- $pages := (where site.RegularPages "Section" "services").ByWeight | first (site.Params.home.services | default 4) -}}
+{{- with $pages -}}
+<section class="section services" id="services" aria-labelledby="services-title">
+  <div class="container">
+    {{ partial "ui/section-header.html" (dict "eyebrow" (T "services_title") "title" (site.GetPage "/services").Title "id" "services-title") }}
+    <div class="grid grid--4">
+      {{- range $i, $p := . }}{{ partial "cards/service.html" (dict "page" $p "index" $i) }}{{ end }}
+    </div>
+    <p class="section__more"><a class="btn" href="{{ (site.GetPage "/services").RelPermalink }}">{{ T "services_all" }}{{ partial "ui/icon.html" "arrow-right" }}</a></p>
+  </div>
+</section>
+{{- end -}}

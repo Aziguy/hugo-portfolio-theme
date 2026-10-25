@@ -1,0 +1,13 @@
+{{- /* "2024", "2024-03" ou "present" vers un libellé localisé. */ -}}
+{{- $v := string . -}}
+{{- $out := $v -}}
+{{- if eq $v "present" -}}
+  {{- $out = T "present" -}}
+{{- else -}}
+  {{- $parts := split $v "-" -}}
+  {{- if ge (len $parts) 2 -}}
+    {{- $t := time.AsTime (printf "%s-%s-01" (index $parts 0) (index $parts 1)) -}}
+    {{- $out = $t | time.Format "January 2006" | strings.FirstUpper -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

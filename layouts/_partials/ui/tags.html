@@ -1,0 +1,8 @@
+{{- /* (dict "page" . "taxonomy" "tags") */ -}}
+{{- with .page.GetTerms (.taxonomy | default "tags") -}}
+<ul class="tag-list">
+  {{- range . }}
+    <li><a class="chip" href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a></li>
+  {{- end }}
+</ul>
+{{- end -}}

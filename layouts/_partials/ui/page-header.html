@@ -1,0 +1,15 @@
+{{- /* En-tête de page : titre, description, fil d'Ariane. Reçoit la page. */ -}}
+<header class="page-header">
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <ol>
+        {{- range .Ancestors.Reverse }}
+          <li><a href="{{ .RelPermalink }}">{{ if .IsHome }}{{ T "home" }}{{ else }}{{ .LinkTitle }}{{ end }}</a></li>
+        {{- end }}
+        <li aria-current="page">{{ .LinkTitle }}</li>
+      </ol>
+    </nav>
+    <h1 class="page-header__title">{{ .Title }}</h1>
+    {{- with .Description }}<p class="page-header__lead">{{ . }}</p>{{ end }}
+  </div>
+</header>

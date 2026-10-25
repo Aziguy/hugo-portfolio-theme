@@ -1,0 +1,27 @@
+{{- with site.Data.testimonials -}}
+<section class="section section--alt testimonials" id="testimonials" aria-labelledby="testimonials-title">
+  <div class="container">
+    {{ partial "ui/section-header.html" (dict "eyebrow" (T "testimonials_title") "title" (T "testimonials_title") "id" "testimonials-title") }}
+    <div class="carousel" data-carousel>
+      <ul class="carousel__track" data-carousel-track tabindex="0" aria-label="{{ T "testimonials_title" }}">
+        {{- range . }}
+          <li class="carousel__slide">
+            <figure class="card testimonial">
+              {{ partial "ui/icon.html" (dict "name" "quote" "class" "testimonial__mark") }}
+              <blockquote class="testimonial__quote">{{ partial "func/l.html" .quote | markdownify }}</blockquote>
+              <figcaption class="testimonial__author">
+                {{- with .avatar }}{{ partial "ui/image.html" (dict "page" $ "src" . "alt" "" "class" "testimonial__avatar") }}{{ end }}
+                <span><strong>{{ .name }}</strong>{{ with partial "func/l.html" .role }}<span>{{ . }}</span>{{ end }}</span>
+              </figcaption>
+            </figure>
+          </li>
+        {{- end }}
+      </ul>
+      <div class="carousel__controls">
+        <button class="icon-button" type="button" data-carousel-prev aria-label="{{ T "previous" }}">{{ partial "ui/icon.html" "chevron-left" }}</button>
+        <button class="icon-button" type="button" data-carousel-next aria-label="{{ T "next" }}">{{ partial "ui/icon.html" "chevron-right" }}</button>
+      </div>
+    </div>
+  </div>
+</section>
+{{- end -}}
