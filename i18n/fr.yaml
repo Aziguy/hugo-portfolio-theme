@@ -1,0 +1,68 @@
+skip_to_content: Aller au contenu
+menu_open: Ouvrir le menu
+menu_close: Fermer le menu
+theme_toggle: Basculer le thème clair / sombre
+language: Langue
+home: Accueil
+back_to_top: Revenir en haut
+
+hero_greeting: Bonjour, je suis
+download_cv: Télécharger le CV
+contact_me: Me contacter
+see_projects: Voir mes projets
+
+about_title: À propos
+about_more: En savoir plus
+skills_title: Compétences
+services_title: Services
+services_all: Tous les services
+projects_title: Projets
+projects_all: Tous les projets
+projects_filter: Filtrer les projets
+filter_all: Tous
+projects_empty: Aucun projet dans cette catégorie.
+project_client: Client
+project_role: Rôle
+project_period: Période
+project_stack: Technologies
+project_demo: Voir le site
+project_repo: Code source
+project_results: Résultats
+featured: À la une
+
+experience_title: Expérience
+education_title: Formation
+resume_title: Parcours
+present: Aujourd'hui
+
+testimonials_title: Recommandations
+posts_title: Derniers articles
+posts_all: Tous les articles
+read_post: Lire l'article
+reading_time:
+  one: "{{ .Count }} min de lecture"
+  other: "{{ .Count }} min de lecture"
+published_on: Publié le
+toc: Sommaire
+tags: Étiquettes
+categories: Catégories
+related: À lire aussi
+previous: Précédent
+next: Suivant
+pagination: Pagination
+page_n: "Page {{ . }}"
+
+contact_title: Travaillons ensemble
+contact_text: Un projet, une mission ou une question ? Écrivez-moi, je réponds rapidement.
+contact_email: Écrire un e-mail
+form_name: Votre nom
+form_email: Votre e-mail
+form_message: Votre message
+form_send: Envoyer
+
+rights: Tous droits réservés.
+built_with: Propulsé par Hugo
+rss: Flux RSS
+not_found_title: Page introuvable
+not_found_text: La page demandée n'existe pas ou a été déplacée.
+back_home: Retour à l'accueil

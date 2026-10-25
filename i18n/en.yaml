@@ -1,0 +1,68 @@
+skip_to_content: Skip to content
+menu_open: Open menu
+menu_close: Close menu
+theme_toggle: Toggle light / dark theme
+language: Language
+home: Home
+back_to_top: Back to top
+
+hero_greeting: Hi, I am
+download_cv: Download résumé
+contact_me: Contact me
+see_projects: See my work
+
+about_title: About
+about_more: Learn more
+skills_title: Skills
+services_title: Services
+services_all: All services
+projects_title: Projects
+projects_all: All projects
+projects_filter: Filter projects
+filter_all: All
+projects_empty: No project in this category.
+project_client: Client
+project_role: Role
+project_period: Period
+project_stack: Stack
+project_demo: Visit site
+project_repo: Source code
+project_results: Results
+featured: Featured
+
+experience_title: Experience
+education_title: Education
+resume_title: Résumé
+present: Present
+
+testimonials_title: Testimonials
+posts_title: Latest posts
+posts_all: All posts
+read_post: Read post
+reading_time:
+  one: "{{ .Count }} min read"
+  other: "{{ .Count }} min read"
+published_on: Published on
+toc: Contents
+tags: Tags
+categories: Categories
+related: Related posts
+previous: Previous
+next: Next
+pagination: Pagination
+page_n: "Page {{ . }}"
+
+contact_title: Let's work together
+contact_text: A project, a mission or a question? Drop me a line, I reply quickly.
+contact_email: Send an email
+form_name: Your name
+form_email: Your email
+form_message: Your message
+form_send: Send
+
+rights: All rights reserved.
+built_with: Built with Hugo
+rss: RSS feed
+not_found_title: Page not found
+not_found_text: The page you are looking for does not exist or has moved.
+back_home: Back to home
