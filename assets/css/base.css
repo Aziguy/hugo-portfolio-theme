@@ -61,8 +61,7 @@ a:hover {
   color: var(--accent-ink);
 }
 
-ul[class],
-ol[class] {
+:where(ul[class], ol[class]) {
   list-style: none;
   padding: 0;
 }
@@ -86,7 +85,7 @@ button {
 }
 
 ::selection {
-  background: var(--accent);
+  background: var(--accent-strong);
   color: var(--on-accent);
 }
 
