@@ -1,0 +1,72 @@
+/* Jetons de design : couleurs, typographie, espacements. Surcharger dans assets/css/custom.css. */
+:root {
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
+  --text-xl: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 1.25rem + 1.2vw, 2.25rem);
+  --text-3xl: clamp(2rem, 1.5rem + 2.4vw, 3.25rem);
+  --text-4xl: clamp(2.5rem, 1.6rem + 4.4vw, 4.75rem);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: clamp(3.5rem, 2.5rem + 4vw, 6rem);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.5rem;
+  --radius-pill: 999px;
+
+  --container: 74rem;
+  --container-narrow: 48rem;
+  --header-height: 4.5rem;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+
+  --accent-light: #e11d48;
+  --accent-dark: #fb7185;
+
+  --bg: #f8f6fb;
+  --surface: #ffffff;
+  --surface-2: #f1eef6;
+  --text: #111a24;
+  --muted: #55606e;
+  --border: #dcd7e4;
+  --accent: var(--accent-light);
+  --on-accent: #ffffff;
+  --shadow: 0 1px 2px rgb(17 26 36 / 0.04), 0 8px 24px -12px rgb(17 26 36 / 0.18);
+}
+
+:root[data-theme="dark"] {
+  --accent-ink: var(--accent);
+  --bg: #0f1218;
+  --surface: #171b23;
+  --surface-2: #1d222c;
+  --text: #eef1f6;
+  --muted: #a3acb9;
+  --border: #2c3340;
+  --accent: var(--accent-dark);
+  --on-accent: #111a24;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 12px 32px -16px rgb(0 0 0 / 0.6);
+  color-scheme: dark;
+}
+
+:root {
+  --accent-ink: color-mix(in oklab, var(--accent) 78%, #000);
+  --accent-soft: color-mix(in oklab, var(--accent) 12%, transparent);
+  --accent-line: color-mix(in oklab, var(--accent) 35%, transparent);
+}
+
+[data-accent="blue"] { --accent-light: #2563eb; --accent-dark: #60a5fa; }
+[data-accent="emerald"] { --accent-light: #047857; --accent-dark: #34d399; }
+[data-accent="violet"] { --accent-light: #7c3aed; --accent-dark: #a78bfa; }
+[data-accent="amber"] { --accent-light: #b45309; --accent-dark: #fbbf24; }
+[data-accent="slate"] { --accent-light: #334155; --accent-dark: #cbd5e1; }

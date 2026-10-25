@@ -1,0 +1,48 @@
+.container {
+  width: min(100% - 2 * var(--space-5), var(--container));
+  margin-inline: auto;
+}
+
+.container--narrow {
+  width: min(100% - 2 * var(--space-5), var(--container-narrow));
+}
+
+.section {
+  padding-block: var(--space-8);
+}
+
+.section--tight {
+  padding-block: var(--space-6);
+}
+
+.section--flush {
+  padding-block-start: var(--space-6);
+}
+
+.section--alt {
+  background: var(--surface-2);
+}
+
+.section__intro {
+  margin-block-end: var(--space-6);
+}
+
+.section__more {
+  display: flex;
+  justify-content: center;
+  margin-block-start: var(--space-6);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--grid-min, 18rem)), 1fr));
+}
+
+.grid--3 {
+  --grid-min: 19rem;
+}
+
+.grid--4 {
+  --grid-min: 15rem;
+}
