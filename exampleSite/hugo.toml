@@ -127,7 +127,8 @@ summaryLength = 30
       weight = 5
 
 [params]
-  accent = "rose"
+  accent = "rose"          # rose, violet, indigo, orange, cyan, blue, red, pink, slate, green
+  tools = true             # panneau de personnalisation pour les visiteurs
   colorScheme = "system"
   description = { fr = "Portfolio d'Alex Martin, développeur full-stack et ingénieur qualité.", en = "Portfolio of Alex Martin, full-stack developer and quality engineer." }
   ogImage = "images/og.svg"
@@ -135,7 +136,12 @@ summaryLength = 30
   [params.author]
     name = "Alex Martin"
     email = "alex@example.com"
-    jobTitle = { fr = "Développeur full-stack & ingénieur qualité", en = "Full-stack developer & quality engineer" }
+    jobTitle = { fr = "Développeur full-stack", en = "Full-stack developer" }
+    phone = "+33 6 12 34 56 78"
+    website = "https://example.org"
+    location = { fr = "Lyon, France", en = "Lyon, France" }
+    avatar = "images/avatar.svg"
+    signature = "images/signature.svg"
 
   [params.resume]
     # Chemin dans static/ ou assets/, un fichier par langue possible : { fr = "...", en = "..." }
@@ -144,9 +150,13 @@ summaryLength = 30
   [params.contact]
     # URL d'un service de formulaire (Formspree, Getform...). Vide : pas de formulaire.
     formAction = ""
+    title = { fr = "Une idée ?", en = "Got an idea?" }
+    subtitle = { fr = "Construisons-la ensemble.", en = "Let's build it together." }
+    text = { fr = "Un projet, une mission ou une question : écrivez-moi, je réponds sous 48 heures.", en = "A project, a mission or a question: drop me a line, I reply within 48 hours." }
 
   [params.home]
-    sections = ["hero", "stats", "about", "skills", "services", "projects", "experience", "testimonials", "posts", "contact"]
-    projects = 3
-    posts = 3
+    # Disponibles aussi : stats, skills.
+    sections = ["hero", "about", "achievements", "services", "projects", "contact", "testimonials", "posts"]
+    projects = 6
+    posts = 2
     services = 4

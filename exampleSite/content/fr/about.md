@@ -3,7 +3,9 @@ title: À propos
 type: about
 description: Mon parcours, ma façon de travailler et ce qui me motive.
 image: images/about.svg
-sections: [stats, skills, testimonials]
+heading: À propos de moi
+quote: La créativité naît de la rigueur.
+sections: [skills, testimonials]
 ---
 
 Je suis **Alex Martin**, développeur full-stack et ingénieur qualité basé à Lyon.

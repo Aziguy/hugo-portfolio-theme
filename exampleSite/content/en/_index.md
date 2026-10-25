@@ -5,6 +5,7 @@ hero:
   status: Available for new projects
   image: images/avatar.svg
 about:
+  quote: Creativity grows out of rigour.
   title: Build fast, ship with confidence
   image: images/about.svg
   text: |

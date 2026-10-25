@@ -1,6 +1,10 @@
-# level (0 à 100) est facultatif : sans lui, pas de jauge.
+# level (0 à 100) : jauge du groupe. summary : résumé affiché dans les pastilles. Les niveaux des items sont facultatifs.
 - title: { fr: Développement, en: Development }
   icon: code
+  level: 90
+  summary:
+    fr: "Applications web rapides et maintenables, du composant à l'API."
+    en: "Fast and maintainable web apps, from component to API."
   items:
     - { name: TypeScript, level: 90 }
     - { name: React, level: 85 }
@@ -9,6 +13,10 @@
 
 - title: { fr: Qualité & tests, en: Quality & testing }
   icon: shield-check
+  level: 85
+  summary:
+    fr: "Stratégie de test et automatisation intégrée à la CI."
+    en: "Test strategy and automation wired into CI."
   items:
     - { name: Playwright, level: 90 }
     - { name: Cypress, level: 85 }
@@ -17,6 +25,10 @@
 
 - title: { fr: DevOps & outils, en: DevOps & tooling }
   icon: workflow
+  level: 75
+  summary:
+    fr: "Pipelines de livraison, conteneurs et outillage IA."
+    en: "Delivery pipelines, containers and AI tooling."
   items:
     - { name: GitHub Actions, level: 85 }
     - { name: Docker, level: 75 }

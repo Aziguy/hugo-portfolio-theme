@@ -3,7 +3,9 @@ title: About
 type: about
 description: My background, how I work and what drives me.
 image: images/about.svg
-sections: [stats, skills, testimonials]
+heading: About me
+quote: Creativity grows out of rigour.
+sections: [skills, testimonials]
 ---
 
 I am **Alex Martin**, a full-stack developer and quality engineer based in Lyon.

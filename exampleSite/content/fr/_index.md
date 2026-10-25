@@ -5,6 +5,7 @@ hero:
   status: Disponible pour de nouveaux projets
   image: images/avatar.svg
 about:
+  quote: La créativité naît de la rigueur.
   title: Construire vite, livrer sereinement
   image: images/about.svg
   text: |
