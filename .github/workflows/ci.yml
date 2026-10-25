@@ -18,6 +18,8 @@ concurrency:
 env:
   HUGO_VERSION: 0.151.0
   THEMES_DIR: /tmp/themes
+  # GitHub Pages n'est disponible que pour un dépôt public sur un compte gratuit.
+  PUBLISH: ${{ github.event_name != 'pull_request' && !github.event.repository.private }}
 
 jobs:
   build:
@@ -46,20 +48,20 @@ jobs:
 
       - name: Configure Pages
         id: pages
-        if: github.event_name != 'pull_request'
+        if: env.PUBLISH == 'true'
         uses: actions/configure-pages@v5
 
       - name: Build demo site
-        if: github.event_name != 'pull_request'
+        if: env.PUBLISH == 'true'
         run: hugo --source exampleSite --themesDir "$THEMES_DIR" --gc --minify -b "${{ steps.pages.outputs.base_url }}/" -d "$GITHUB_WORKSPACE/public"
 
       - uses: actions/upload-pages-artifact@v3
-        if: github.event_name != 'pull_request'
+        if: env.PUBLISH == 'true'
         with:
           path: public
 
   deploy:
-    if: github.event_name != 'pull_request'
+    if: github.event_name != 'pull_request' && !github.event.repository.private
     needs: build
     runs-on: ubuntu-latest
     environment:
