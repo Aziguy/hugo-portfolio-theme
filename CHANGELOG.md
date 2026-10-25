@@ -1,5 +1,17 @@
 # Journal des versions
 
+## 2.1.0 (2026-10-25)
+
+### Ajouté
+- Identité visuelle inspirée du gabarit d'origine, réécrite : cartes à image débordante, pastilles pastel à jauge circulaire, frise alternée à onglets (section `achievements`), badges rotatifs, bandeau de contact sombre, témoignages un par un, formes décoratives.
+- Panneau de personnalisation (`params.tools`) : 10 couleurs, sens LTR / RTL, clair / sombre.
+- Page CV en deux colonnes, page À propos avec citation et signature, bandeau sombre des pages internes.
+- Bouton de retour en haut avec progression de lecture, transitions de vue entre pages.
+
+### Corrigé
+- Frise et listes à puces sans retrait : la remise à zéro des listes passe en `:where()`.
+- Débordement horizontal du carrousel sur mobile.
+
 ## 2.0.0 (2026-10-25)
 
 Refonte complète du thème.

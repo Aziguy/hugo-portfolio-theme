@@ -20,6 +20,7 @@ hero:
   status: Disponible pour de nouveaux projets   # badge facultatif
   image: images/avatar.jpg
 about:
+  quote: La créativité naît de la rigueur.   # citation en lettres détourées
   title: Construire vite, livrer sereinement
   image: images/about.jpg
   text: |
@@ -72,8 +73,8 @@ features:
 
 ## Pages À propos et CV
 
-- `content/<langue>/about.md` avec `type: about`, `image` et `sections: [stats, skills, testimonials]` pour réutiliser des sections de l'accueil sous le texte.
-- `content/<langue>/resume.md` avec `type: resume` : frises issues de `data/experience.yaml` et `data/education.yaml`, compétences et bouton PDF.
+- `content/<langue>/about.md` avec `type: about`, `image`, `heading`, `quote` et `sections: [skills, testimonials]` pour réutiliser des sections de l'accueil sous le texte.
+- `content/<langue>/resume.md` avec `type: resume` : colonne latérale (photo, coordonnées, formation, compétences) et cartes expérience et projets ; le contenu de la page devient le bloc « À propos ».
 
 ## Fichiers de données (`data/`)
 
@@ -81,10 +82,10 @@ features:
 |---|---|
 | `socials.yaml` | `name`, `url`, `icon` |
 | `stats.yaml` | `value`, `label`, `icon` |
-| `skills.yaml` | `title`, `icon`, `items` (`name`, `level` de 0 à 100 facultatif) |
+| `skills.yaml` | `title`, `icon`, `level` (0 à 100, jauge circulaire), `summary`, `items` (`name`) |
 | `experience.yaml` | `role`, `company`, `location`, `start`, `end`, `summary`, `highlights`, `techs`, `url` |
 | `education.yaml` | `title`, `school`, `start`, `end`, `description`, `url` |
-| `testimonials.yaml` | `name`, `role`, `quote`, `avatar` |
+| `testimonials.yaml` | `name`, `role`, `quote`, `avatar` (photo et vignettes flottantes) |
 
 Les textes traduisibles s'écrivent `{ fr: "...", en: "..." }`, les listes `highlights: { fr: [...], en: [...] }`. En YAML, entourez de guillemets toute valeur contenant une virgule dans un dictionnaire en ligne.
 

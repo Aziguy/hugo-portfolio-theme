@@ -37,6 +37,8 @@ Les propriétés logiques (`margin-inline`, `inset-inline-start`...) rendent la 
 
 ## JavaScript
 
+Les préférences des visiteurs (thème, couleur, sens d'écriture) passent par `modules/preferences.js` et sont appliquées avant le premier rendu par `head/theme-init.html`.
+
 [`assets/js/main.js`](../assets/js/main.js) importe les modules de `assets/js/modules/` et les initialise séparément : un module en échec n'empêche pas les autres de démarrer. Chaque module cible des attributs `data-*` (`data-theme-toggle`, `data-filter`, `data-carousel`...) plutôt que des classes de style.
 
 Pour ajouter un comportement : créez `modules/mon-module.js` exportant `initMonModule`, puis ajoutez-le à la liste de `main.js`.
@@ -55,9 +57,10 @@ Un nom inconnu produit un avertissement au build au lieu d'une page cassée.
 | `func/l.html` | `{{ partial "func/l.html" .title }}` : valeur traduite |
 | `func/date.html` | `"2024-03"` vers « Mars 2024 », `present` vers « Aujourd'hui » |
 | `func/period.html` | `(dict "start" "2022" "end" "present")` |
+| `func/period-short.html` | Période compacte des pastilles de frise : « 2020-23 » |
 | `func/image-url.html` | URL d'une image (bundle, assets ou static), relative ou absolue |
 
-Les partiels `ui/` produisent du HTML : `ui/icon.html`, `ui/image.html`, `ui/timeline.html`, `ui/section-header.html`, `ui/pagination.html`...
+Les partiels `ui/` produisent du HTML : `ui/section-header.html` (dernier mot en couleur), `ui/rotating-badge.html`, `ui/ring.html` (jauge), `ui/skill-pills.html`, `ui/alt-timeline.html`, `ui/project-grid.html`, `ui/doodle.html` (formes décoratives), `ui/image.html`...
 
 ## Vérifications
 

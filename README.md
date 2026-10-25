@@ -21,12 +21,14 @@
 |---|---|
 | **Sections à la carte** | L'accueil est une liste de sections déclarée dans la configuration : réordonnez, retirez ou ajoutez les vôtres. |
 | **Multilingue natif** | Interface traduite (FR, EN), contenu par langue, sélecteur qui conserve la page, balises `hreflang`. |
-| **Clair / sombre** | Préférence système ou choix mémorisé, sans flash au chargement, 6 couleurs d'accent. |
+| **Identité forte** | Cartes à contour dont l'image déborde, pastilles pastel à jauge circulaire, frise alternée à onglets, badges au texte tournant, lettres détourées, formes décoratives animées. |
+| **Personnalisable par le visiteur** | Panneau d'outils : 10 couleurs d'accent, sens LTR / RTL, clair / sombre, mémorisés et appliqués sans flash. |
 | **Projets filtrables** | Filtres par catégorie accessibles, fiches projet avec client, rôle, période, technologies et résultats. |
 | **Blog complet** | Pagination, temps de lecture, sommaire, étiquettes, articles liés, flux RSS. |
-| **CV** | Frise d'expériences et de formations, compétences, téléchargement du PDF par langue. |
+| **CV** | Page en deux colonnes (photo, coordonnées, formation, compétences / expériences, projets) et PDF par langue. |
+| **Moderne** | Typographie fluide, transitions de vue entre pages, `:has()`, propriétés logiques, mouvement réduit respecté. |
 | **SEO** | Open Graph, URL canonique, JSON-LD (`Person`, `WebSite`, `BlogPosting`, `CreativeWork`), sitemap. |
-| **Accessibilité** | Audit axe-core WCAG 2.1 AA sans violation en clair et en sombre, navigation clavier, mouvement réduit respecté. |
+| **Accessibilité** | Audit axe-core WCAG 2.1 AA sans violation en clair et en sombre, contraste vérifié pour les 10 couleurs, onglets et menus au clavier. |
 | **Léger** | Aucun jQuery ni CDN : CSS concaténé et empreint, JS en modules ES compilé par Hugo, police woff2 auto-hébergée. |
 
 ## Démarrage rapide
@@ -94,10 +96,11 @@ exampleSite/      site de démonstration bilingue
 
 ```toml
 [params]
-  accent = "blue"            # rose, blue, emerald, violet, amber, slate
+  accent = "blue"            # rose, violet, indigo, orange, cyan, blue, red, pink, slate, green
+  tools = false              # masque le panneau de personnalisation
   colorScheme = "system"     # system, light, dark
   [params.home]
-    sections = ["hero", "projects", "experience", "contact"]
+    sections = ["hero", "about", "achievements", "projects", "contact"]
 ```
 
 - **Styles** : créez `assets/css/custom.css` dans votre site, il est chargé en dernier.

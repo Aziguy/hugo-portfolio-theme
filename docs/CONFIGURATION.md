@@ -16,21 +16,25 @@ La fonction `func/l.html` choisit la langue courante, puis la langue par défaut
 
 | Clé | Rôle | Défaut |
 |---|---|---|
-| `params.accent` | Couleur d'accent : `rose`, `blue`, `emerald`, `violet`, `amber`, `slate` | `rose` |
+| `params.accent` | Couleur d'accent : `rose`, `violet`, `indigo`, `orange`, `cyan`, `blue`, `red`, `pink`, `slate`, `green` | `rose` |
+| `params.tools` | Panneau de personnalisation pour les visiteurs (couleur, sens LTR/RTL, thème) | `true` |
 | `params.colorScheme` | Thème initial : `system`, `light`, `dark` | `system` |
 | `params.description` | Description par défaut (SEO) | |
 | `params.ogImage` | Image de partage par défaut | |
-| `params.logo` | Logo de l'en-tête, sinon initiales de l'auteur | |
+| `params.logo` | Logo de l'en-tête, sinon le titre du site suivi d'un point d'accent | |
 | `params.favicon` | Favicon, sinon celui du thème | |
 | `params.dateFormat` | Format des dates d'articles | `:date_long` |
 | `params.author.name` | Nom affiché partout | |
 | `params.author.email` | Bouton e-mail et lien de contact | |
 | `params.author.jobTitle` | Intitulé de poste | |
+| `params.author.phone`, `.website`, `.location` | Coordonnées de la page CV | |
+| `params.author.avatar` | Photo de la page CV | |
+| `params.author.signature` | Image de signature (À propos) | |
 | `params.resume.pdf` | PDF du CV (chemin ou URL, par langue possible) | |
 | `params.contact.formAction` | URL d'un service de formulaire (Formspree...) | |
-| `params.contact.title`, `.text` | Textes de la section contact | textes i18n |
+| `params.contact.title`, `.subtitle`, `.text` | Textes du bandeau de contact | textes i18n |
 | `params.home.sections` | Sections de l'accueil, dans l'ordre | toutes |
-| `params.home.projects`, `.posts`, `.services` | Nombre d'éléments affichés à l'accueil | 3, 3, 4 |
+| `params.home.projects`, `.posts`, `.services` | Nombre d'éléments affichés à l'accueil | 6, 2, 4 |
 | `params.blog.showReadingTime` | Temps de lecture | `true` |
 | `params.blog.showToc` | Sommaire des articles (désactivable par `toc: false`) | `true` |
 
@@ -38,16 +42,16 @@ La fonction `func/l.html` choisit la langue courante, puis la langue par défaut
 
 | Nom | Source |
 |---|---|
-| `hero` | Front matter `hero` de `content/<langue>/_index.md` |
-| `stats` | `data/stats.yaml` |
-| `about` | Front matter `about` de l'accueil |
-| `skills` | `data/skills.yaml` |
-| `services` | Pages de `content/<langue>/services/` |
-| `projects` | Pages de `content/<langue>/projects/`, `featured: true` en premier |
-| `experience` | `data/experience.yaml` (3 premières entrées) |
-| `testimonials` | `data/testimonials.yaml` |
+| `hero` | Front matter `hero` de l'accueil : portrait en forme organique, prénom et nom en filigrane |
+| `about` | Front matter `about` : citation en contour, photo ovale avec badge rotatif, 3 premières pastilles de `data/skills.yaml` |
+| `achievements` | Onglets Formation / Expérience et frise alternée (`data/education.yaml`, `data/experience.yaml`) |
+| `services` | Pages de `content/<langue>/services/`, cartes pastel |
+| `projects` | Pages de `content/<langue>/projects/` filtrables, `featured: true` en premier |
+| `contact` | Bandeau sombre avec badge rotatif (`params.contact`, `params.author.email`) |
+| `testimonials` | `data/testimonials.yaml`, une recommandation à la fois |
 | `posts` | Derniers articles de `content/<langue>/blog/` |
-| `contact` | `params.contact` et `params.author.email` |
+| `stats` | `data/stats.yaml` (non affichée par défaut) |
+| `skills` | Toutes les pastilles de `data/skills.yaml` (non affichée par défaut) |
 
 ## Langues
 
